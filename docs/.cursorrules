@@ -1,0 +1,64 @@
+# IVM-XYZ Package Development Rules
+
+## Code Style and Standards
+
+- Use Python 3.8+ syntax and features
+- Follow PEP 8 style guidelines
+- Use type hints where appropriate
+- Write comprehensive docstrings for all classes and functions
+- Use descriptive variable and function names
+
+## Testing
+
+- All code must have corresponding tests
+- Use test-driven development (TDD) approach
+- Use real data analysis - no mock methods
+- Tests should be in the `tests/` directory
+- Run tests with: `python -m pytest tests/` or `python -m unittest discover tests`
+
+## Module Organization
+
+- Core geometric calculations: `ivm_xyz/core/`
+- Coordinate conversion: `ivm_xyz/conversion/`
+- Polyhedra definitions: `ivm_xyz/polyhedra/`
+- Visualization: `ivm_xyz/visualization/`
+
+## Documentation
+
+- Documentation should be "show not tell" - demonstrate usage through examples
+- Keep documentation understated and informative
+- Update API.md when adding new public functions or methods
+- Include mathematical background in docstrings where relevant
+- Document all method signatures, parameters, return types, and exceptions
+- Include technical implementation details for complex algorithms
+- Provide examples for all public methods and classes
+- Document edge cases and special behaviors
+- Keep documentation synchronized with code changes
+
+## Code Quality
+
+- Modular, well-documented, clearly reasoned code
+- Avoid redundant code sections
+- Scan the repository entirely before making changes
+- Use professional, functional, intelligent, wise, modular, concise, elegant, thoughtful code
+- Clearly comment code for interpretability
+
+## Mathematical Accuracy
+
+- All geometric calculations must maintain high precision
+- Use constants from `ivm_xyz.core.constants` for mathematical constants
+- Verify calculations against known geometric properties
+- Document any approximations or assumptions
+
+## Import Guidelines
+
+- Use absolute imports from package root
+- Keep imports organized and minimal
+- Avoid circular dependencies
+
+## Git Workflow
+
+- Commit messages should be clear and descriptive
+- Keep commits focused on single logical changes
+- Review changes before committing
+
