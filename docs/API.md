@@ -2,6 +2,8 @@
 
 Complete technical API documentation for all classes, methods, and functions in the IVM-XYZ package.
 
+**Companion docs:** per-module narrative and tree links in [MODULES.md](MODULES.md); math and IVM context in [BACKGROUND.md](BACKGROUND.md); algorithms and precision in [TECHNICAL_REFERENCE.md](TECHNICAL_REFERENCE.md). **Visualization:** `PolyhedronPlotter` default output directory is `outputs/plots` (v0.2+); see `DEFAULT_PLOT_OUTPUT_DIR` in `ivm_xyz.visualization`.
+
 ## Table of Contents
 
 1. [Core Module](#core-module)
@@ -1622,12 +1624,12 @@ Class for plotting and animating polyhedra.
 
 ##### Methods
 
-###### `__init__(output_folder="images")`
+###### `__init__(output_folder=None)`
 
 Initialize the plotter.
 
 **Parameters**:
-- `output_folder` (str, optional): Directory to save output images/animations. Default: "images"
+- `output_folder` (str, optional): Directory to save output images/animations. Default: `None` means use `DEFAULT_PLOT_OUTPUT_DIR` (``"outputs/plots"`` as of v0.2.0; relative to the process current working directory).
 
 **Behavior**: 
 - Creates output folder if it doesn't exist

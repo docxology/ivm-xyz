@@ -6,18 +6,21 @@ Complete guide to all documentation in the IVM-XYZ package.
 
 ### For Users
 
-1. **[README.md](../README.md)** - Start here! Quick start guide and overview
-2. **[API.md](API.md)** - Complete API reference with all methods and signatures
-3. **[MODULES.md](MODULES.md)** - Detailed module-by-module documentation
-4. **[BACKGROUND.md](BACKGROUND.md)** - Mathematical background and theory
+- **[README.md](README.md)** — File map for the `docs/` tree (start here for navigation within docs)
+- **[README.md](../README.md)** (repository root) — Quick start and overview
+- **[outputs/README.md](../outputs/README.md)** — Default `outputs/plots|logs|reports` and gitignore policy
+- **[API.md](API.md)** — API reference with methods and signatures
+- **[MODULES.md](MODULES.md)** — Module-by-module documentation
+- **[BACKGROUND.md](BACKGROUND.md)** — Mathematical background and theory
+- **[examples/orchestrators/README.md](../examples/orchestrators/README.md)** — Runnable orchestrator scripts; optional `IVM_XYZ_OUTPUT_ROOT`
 
 ### For Developers
 
-1. **[AGENTS.md](AGENTS.md)** - Development workflows and agent documentation
-2. **[TECHNICAL_REFERENCE.md](TECHNICAL_REFERENCE.md)** - Technical implementation details
-3. **[STRUCTURE.md](STRUCTURE.md)** - Package structure and organization
-4. **[TESTING_SUMMARY.md](TESTING_SUMMARY.md)** - Testing overview and results
-5. **[.cursorrules](.cursorrules)** - Development rules and guidelines
+- **[AGENTS.md](AGENTS.md)** — Workflows and agent documentation
+- **[TECHNICAL_REFERENCE.md](TECHNICAL_REFERENCE.md)** — Implementation details
+- **[STRUCTURE.md](STRUCTURE.md)** — Package structure (matches the repository)
+- **[TESTING_SUMMARY.md](TESTING_SUMMARY.md)** — How to run tests; optional `matplotlib` skips
+- **[.cursorrules](.cursorrules)** — Development rules
 
 ## Documentation Files
 
@@ -213,6 +216,13 @@ All methods and classes are fully documented:
 2. Check [API.md](API.md) for method signatures
 3. Review [MODULES.md](MODULES.md) for module details
 
+## Outputs, version, and orchestrators (v0.2+)
+
+- **Plots:** `PolyhedronPlotter` default directory is `outputs/plots` (`DEFAULT_PLOT_OUTPUT_DIR`); legacy `images/` remains valid if you pass `output_folder="images"`.
+- **Logs / reports:** `scripts/test_runner.py` → `outputs/logs/test_results.log`, `outputs/reports/test_report.txt`; comprehensive report → `outputs/reports/COMPREHENSIVE_TEST_REPORT.md`.
+- **Env:** `IVM_XYZ_OUTPUT_ROOT` relocates orchestrator outputs (see `examples/orchestrators/config.py`).
+- **Checks:** `orch_conversion_roundtrip.py` and `orch_triangle_make_tri.py` support `--check` with `--rtol` / `--atol` (triangle check compares `make_tri` to `Triangle(a,b,c).ivm_area()` / `.xyz_area()` for the same edge lengths, not the parallelogram cross product).
+
 ## Documentation Maintenance
 
 ### When to Update Documentation
@@ -223,6 +233,7 @@ All methods and classes are fully documented:
 - ✅ When fixing bugs that affect behavior
 - ✅ When updating test coverage
 - ✅ When changing package structure
+- ✅ When changing default paths, version, or optional-dependency behavior (`matplotlib`, `uv` workflow)
 
 ### Documentation Standards
 
@@ -262,13 +273,13 @@ vol = tet.ivm_volume()
 ```
 See: [API.md](API.md#tetrahedron-class)
 
-**Visualize Polyhedron**:
+**Visualize Polyhedron** (default output dir `outputs/plots` in v0.2+; overridable):
 ```python
-from ivm_xyz.visualization import PolyhedronPlotter
-plotter = PolyhedronPlotter()
+from ivm_xyz.visualization import PolyhedronPlotter, DEFAULT_PLOT_OUTPUT_DIR
+plotter = PolyhedronPlotter()  # or PolyhedronPlotter(output_folder="…")
 plotter.plot_polyhedron(vertices, faces, save=True)
 ```
-See: [API.md](API.md#polyhedronplotter-class)
+See: [API.md](API.md#polyhedronplotter-class), [STRUCTURE.md](STRUCTURE.md), [../outputs/README.md](../outputs/README.md)
 
 ---
 

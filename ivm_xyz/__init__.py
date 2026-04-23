@@ -8,7 +8,7 @@ This package provides tools for:
 - Visualizing geometric structures
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 from ivm_xyz.core.vectors import Vector, Qvector
 from ivm_xyz.core.tetrahedron import Tetrahedron, make_tet

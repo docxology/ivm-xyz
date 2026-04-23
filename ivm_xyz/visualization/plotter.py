@@ -15,6 +15,9 @@ from concurrent.futures import ThreadPoolExecutor
 # Maximum number of threads for parallel processing
 MAX_THREADS = 8
 
+# Default save directory (relative to process working directory) — v0.2.0+
+DEFAULT_PLOT_OUTPUT_DIR = "outputs/plots"
+
 
 class PolyhedronPlotter:
     """
@@ -23,13 +26,17 @@ class PolyhedronPlotter:
     Supports both static plots and animated GIFs of 3D polyhedral structures.
     """
     
-    def __init__(self, output_folder="images"):
+    def __init__(self, output_folder=None):
         """
         Initialize the plotter.
         
         Args:
-            output_folder: Directory to save output images/animations
+            output_folder: Directory to save output images/animations. Defaults to
+                :data:`DEFAULT_PLOT_OUTPUT_DIR` (``"outputs/plots"``), relative to the
+                current working directory.
         """
+        if output_folder is None:
+            output_folder = DEFAULT_PLOT_OUTPUT_DIR
         self.output_folder = output_folder
         os.makedirs(self.output_folder, exist_ok=True)
         self.polyhedrons = []  # List to store polyhedron dictionaries

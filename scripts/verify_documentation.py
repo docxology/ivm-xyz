@@ -4,9 +4,16 @@ Verify documentation matches implementation.
 
 import inspect
 import logging
+import os
+import sys
 from pathlib import Path
 import ast
 import re
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+from tests._support.optional_deps import HAS_MATPLOTLIB
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -160,7 +167,15 @@ def verify_module_structure():
     ]
     
     missing_modules = []
+    skipped_optional = 0
     for module_name in expected_modules:
+        if not HAS_MATPLOTLIB and module_name.startswith("ivm_xyz.visualization"):
+            logger.info(
+                "  ⊘ Skipping %s (matplotlib not installed, optional extra)",
+                module_name,
+            )
+            skipped_optional += 1
+            continue
         try:
             __import__(module_name)
             logger.info(f"  ✓ Module exists: {module_name}")
@@ -169,14 +184,23 @@ def verify_module_structure():
             logger.warning(f"  ⚠ Module missing: {module_name}")
     
     if missing_modules:
-        logger.warning(f"Missing modules: {missing_modules}")
+        logger.warning("Missing modules: %s", missing_modules)
         return False
     
-    logger.info(f"✓ All {len(expected_modules)} modules verified")
+    n = len(expected_modules) - skipped_optional
+    if skipped_optional:
+        logger.info(
+            "✓ All %d modules verified (%d optional visualization modules skipped without matplotlib)",
+            n,
+            skipped_optional,
+        )
+    else:
+        logger.info("✓ All %d modules verified (including visualization)", n)
     return True
 
 
 if __name__ == '__main__':
+    os.chdir(REPO_ROOT)
     logger.info("=" * 80)
     logger.info("DOCUMENTATION VERIFICATION")
     logger.info("=" * 80)

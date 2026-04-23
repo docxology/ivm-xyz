@@ -6,6 +6,8 @@ import unittest
 import logging
 import sys
 
+from tests._support.optional_deps import HAS_MATPLOTLIB
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -101,12 +103,14 @@ class ImportVerificationTests(unittest.TestCase):
         from ivm_xyz.polyhedra.edge_counting import tet_edges, half_oct_edges
         logger.info("  ✓ Polyhedra submodule imports successful")
     
+    @unittest.skipUnless(HAS_MATPLOTLIB, "matplotlib required for visualization imports")
     def test_visualization_module_imports(self):
         """Test visualization module imports."""
         logger.info("Testing visualization module imports...")
         
-        from ivm_xyz.visualization import PolyhedronPlotter
+        from ivm_xyz.visualization import DEFAULT_PLOT_OUTPUT_DIR, PolyhedronPlotter
         self.assertIsNotNone(PolyhedronPlotter)
+        self.assertEqual(DEFAULT_PLOT_OUTPUT_DIR, "outputs/plots")
         logger.info("  ✓ Visualization module imports successful")
         
         from ivm_xyz.visualization.plotter import PolyhedronPlotter
@@ -116,14 +120,19 @@ class ImportVerificationTests(unittest.TestCase):
         """Test that circular imports are prevented."""
         logger.info("Testing circular import prevention...")
         
-        # Try importing in different orders
         import ivm_xyz
         from ivm_xyz.core import Vector
         from ivm_xyz.conversion import xyz_to_ivm
         from ivm_xyz.polyhedra import Cube
-        from ivm_xyz.visualization import PolyhedronPlotter
-        
-        # Verify no circular import issues
+
+        _ = (ivm_xyz, Vector, xyz_to_ivm, Cube)
+        if HAS_MATPLOTLIB:
+            from ivm_xyz.visualization import PolyhedronPlotter
+
+            self.assertIsNotNone(PolyhedronPlotter)
+        else:
+            logger.info("  ⊘ Skipping visualization import (matplotlib not installed)")
+
         self.assertTrue(True)
         logger.info("  ✓ No circular import issues detected")
     

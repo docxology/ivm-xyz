@@ -3,10 +3,14 @@ Generate comprehensive test report with logging and summary.
 """
 
 import logging
+import os
 import subprocess
 import sys
 from pathlib import Path
 from datetime import datetime
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+OUTPUT_REPORT_DIR = REPO_ROOT / "outputs" / "reports"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -61,6 +65,7 @@ def collect_test_results():
 
 def generate_report():
     """Generate comprehensive test report."""
+    os.chdir(REPO_ROOT)
     logger.info("=" * 80)
     logger.info("COMPREHENSIVE TEST REPORT GENERATION")
     logger.info("=" * 80)
@@ -84,10 +89,11 @@ def generate_report():
         "Verifying documentation"
     )
     
-    # Generate report file
-    report_path = Path("docs/COMPREHENSIVE_TEST_REPORT.md")
-    
-    with open(report_path, 'w') as f:
+    # Generate report file (default under outputs/reports; gitignored)
+    OUTPUT_REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    report_path = OUTPUT_REPORT_DIR / "COMPREHENSIVE_TEST_REPORT.md"
+
+    with open(report_path, "w", encoding="utf-8") as f:
         f.write("# Comprehensive Test Report\n\n")
         f.write(f"**Generated:** {datetime.now().isoformat()}\n\n")
         f.write("## Executive Summary\n\n")
@@ -181,17 +187,12 @@ def generate_report():
         
         f.write("\n## Log Files\n\n")
         log_files = [
-            "test_results.log",
-            "test_output.log",
-            "visualization_test_output.log",
-            "import_test_output.log",
-            "functional_test_output.log",
-            "integration_test_output.log",
-            "documentation_verification.log",
+            REPO_ROOT / "outputs" / "logs" / "test_results.log",
+            REPO_ROOT / "outputs" / "reports" / "test_report.txt",
         ]
         for log_file in log_files:
-            if Path(log_file).exists():
-                f.write(f"- ✅ {log_file}\n")
+            if log_file.exists():
+                f.write(f"- ✅ {log_file.relative_to(REPO_ROOT)}\n")
     
     logger.info(f"Report generated: {report_path}")
     

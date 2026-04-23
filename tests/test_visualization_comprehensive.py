@@ -7,12 +7,14 @@ import os
 import tempfile
 import shutil
 import logging
-from pathlib import Path
+
+from tests._support.optional_deps import HAS_MATPLOTLIB
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+@unittest.skipUnless(HAS_MATPLOTLIB, "matplotlib required for visualization tests")
 class ComprehensiveVisualizationTests(unittest.TestCase):
     """Comprehensive tests for visualization functionality."""
     

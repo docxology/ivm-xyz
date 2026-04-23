@@ -7,6 +7,8 @@ import logging
 import sys
 import os
 
+from tests._support.optional_deps import HAS_MATPLOTLIB
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -41,6 +43,7 @@ class IntegrationTests(unittest.TestCase):
         
         logger.info("✓ XYZ -> IVM workflow verified")
     
+    @unittest.skipUnless(HAS_MATPLOTLIB, "matplotlib required for visualization workflow")
     def test_polyhedra_to_visualization_workflow(self):
         """Test polyhedra creation to visualization workflow."""
         logger.info("Testing polyhedra -> visualization workflow...")
@@ -120,16 +123,19 @@ class IntegrationTests(unittest.TestCase):
             from ivm_xyz import Vector, Tetrahedron
             from ivm_xyz.conversion import xyz_to_ivm
             from ivm_xyz.polyhedra import Cube
-            from ivm_xyz.visualization import PolyhedronPlotter
-            
-            # Verify all imports work
-            self.assertTrue(hasattr(ivm_xyz, '__version__'))
+
+            self.assertTrue(hasattr(ivm_xyz, "__version__"))
             self.assertIsNotNone(Vector)
             self.assertIsNotNone(Tetrahedron)
             self.assertIsNotNone(xyz_to_ivm)
             self.assertIsNotNone(Cube)
-            self.assertIsNotNone(PolyhedronPlotter)
-            
+            if HAS_MATPLOTLIB:
+                from ivm_xyz.visualization import PolyhedronPlotter
+
+                self.assertIsNotNone(PolyhedronPlotter)
+            else:
+                logger.info("  ⊘ Skipping PolyhedronPlotter import check (matplotlib not installed)")
+
             logger.info("  ✓ Package imports work correctly")
             logger.info(f"  ✓ Package version: {ivm_xyz.__version__}")
         except Exception as e:

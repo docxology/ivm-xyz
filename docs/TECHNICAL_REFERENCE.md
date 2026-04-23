@@ -2,6 +2,8 @@
 
 Comprehensive technical reference for developers working with the IVM-XYZ package.
 
+**Defaults (v0.2+):** generated plot files from `PolyhedronPlotter` go under **`outputs/plots`** unless `output_folder` is set; reports and logs from dev scripts under **`outputs/reports`** and **`outputs/logs`** (see [STRUCTURE.md](STRUCTURE.md), [outputs/README.md](../outputs/README.md)). Orchestrators may respect **`IVM_XYZ_OUTPUT_ROOT`** via [examples/orchestrators/config.py](../examples/orchestrators/config.py).
+
 ## Table of Contents
 
 1. [Method Signatures](#method-signatures)
@@ -104,7 +106,7 @@ Polyhedron._distill() -> List[Edge]
 ### Visualization Methods
 
 ```python
-PolyhedronPlotter.__init__(output_folder: str = "images") -> None
+PolyhedronPlotter.__init__(output_folder: Optional[str] = None) -> None
 PolyhedronPlotter.add_polyhedron(vertices: List[Tuple], faces: List[Tuple], title: str, file_name: str) -> None
 PolyhedronPlotter.plot_polyhedron(vertices: List[Tuple], faces: List[Tuple], title: str = "Polyhedron Visualization", save: bool = False, file_name: str = "polyhedron.png") -> None
 PolyhedronPlotter.animate_polyhedron(save: bool = False) -> None

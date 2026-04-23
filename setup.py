@@ -18,7 +18,7 @@ if requirements_file.exists():
 
 setup(
     name="ivm-xyz",
-    version="0.1.0",
+    version="0.2.0",
     description="Convert between XYZ and IVM geometric spaces",
     long_description=long_description,
     long_description_content_type="text/markdown",

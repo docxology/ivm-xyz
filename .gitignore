@@ -136,7 +136,12 @@ Thumbs.db
 # Project-specific
 images/*.png
 images/*.gif
+# Root-level rasters (narrow if you add tracked PNGs outside outputs/)
 *.png
 *.gif
 working/
 *.pyc
+
+# Generated output tree (tracked: outputs/README.md only)
+outputs/**
+!outputs/README.md

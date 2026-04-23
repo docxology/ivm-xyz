@@ -1,5 +1,9 @@
 # IVM-XYZ Package Agent Documentation
 
+**Navigation:** [docs/README.md](README.md) (file index) · [../AGENTS.md](../AGENTS.md) (repository root) · [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)
+
+**Documentation set (this tree):** [API.md](API.md) (signatures) · [MODULES.md](MODULES.md) (per-file narrative + `ivm_xyz/**/AGENTS.md` links) · [STRUCTURE.md](STRUCTURE.md) (layout, imports) · [BACKGROUND.md](BACKGROUND.md) (IVM / Synergetics, `S3`, area/volume) · [TECHNICAL_REFERENCE.md](TECHNICAL_REFERENCE.md) (algorithms, precision) · [TESTING_SUMMARY.md](TESTING_SUMMARY.md) · [.cursorrules](.cursorrules) (house rules). **Artifacts:** [outputs/README.md](../outputs/README.md) (`outputs/plots|logs|reports`); optional **`IVM_XYZ_OUTPUT_ROOT`** for [examples/orchestrators/](../examples/orchestrators/) (see [config.py](../examples/orchestrators/config.py)).
+
 ## Package Overview
 
 The `ivm_xyz` package provides tools for computational geometry working with both XYZ (Cartesian) and IVM (Isotropic Vector Matrix / Quadray) coordinate systems, inspired by R. Buckminster Fuller's Synergetics.
@@ -90,7 +94,7 @@ edges = tet_edges(5)  # Edges for frequency 5 tetrahedron
 ```python
 from ivm_xyz.visualization import PolyhedronPlotter
 
-plotter = PolyhedronPlotter(output_folder="images")
+plotter = PolyhedronPlotter()  # default outputs/plots (v0.2+)
 plotter.add_polyhedron(vertices, faces, "Title", "output.gif")
 plotter.animate_polyhedron(save=True)
 ```
@@ -166,23 +170,34 @@ All modules have corresponding test files in `tests/`:
 
 ### Test Execution
 
-Run all tests:
+From the **repository root** (recommended: [uv](https://github.com/astral-sh/uv)):
+
 ```bash
-python -m unittest discover tests
+uv sync --all-extras
+uv run python -m unittest discover tests
 # or
-python -m pytest tests/
-# or using the test runner script
-python scripts/test_runner.py
+uv run python -m pytest tests/
+# or
+uv run python scripts/test_runner.py
 ```
+
+Plain Python equivalent:
+
+```bash
+pip install -e ".[dev,visualization]"
+python -m unittest discover tests
+```
+
+Tests that import `ivm_xyz.visualization` are **skipped** when `matplotlib` is not installed.
 
 Generate comprehensive test report:
 ```bash
-python scripts/generate_comprehensive_report.py
+uv run python scripts/generate_comprehensive_report.py
 ```
 
 Verify documentation:
 ```bash
-python scripts/verify_documentation.py
+uv run python scripts/verify_documentation.py
 ```
 
 ## Utility Scripts
@@ -190,11 +205,11 @@ python scripts/verify_documentation.py
 The `scripts/` directory contains utility scripts for development and maintenance:
 
 ### `scripts/test_runner.py`
-Comprehensive test runner with detailed logging and reporting. Generates test reports with timing, success/failure counts, and detailed output.
+Comprehensive test runner with detailed logging and reporting. Resolves the repository root, `chdir`s there (so it works if invoked from another directory), discovers `tests/` with the correct `top_level_dir`, and writes `outputs/reports/test_report.txt` and `outputs/logs/test_results.log`.
 
-**Usage:**
+**Usage (from any directory, with uv):**
 ```bash
-python scripts/test_runner.py
+uv run python scripts/test_runner.py
 ```
 
 ### `scripts/generate_comprehensive_report.py`
@@ -207,7 +222,7 @@ Generates comprehensive test reports including:
 
 **Usage:**
 ```bash
-python scripts/generate_comprehensive_report.py
+uv run python scripts/generate_comprehensive_report.py
 ```
 
 ### `scripts/verify_documentation.py`
@@ -216,10 +231,11 @@ Verifies that documentation matches implementation:
 - Verifies all documented functions exist
 - Validates module structure
 - Checks README examples
+- Skips `ivm_xyz.visualization` imports when `matplotlib` is not installed
 
 **Usage:**
 ```bash
-python scripts/verify_documentation.py
+uv run python scripts/verify_documentation.py
 ```
 
 ### `scripts/clone_4dsolutions.py`
@@ -251,34 +267,34 @@ The package implements:
 
 1. **Quick test run:**
    ```bash
-   python -m unittest discover tests
+   uv run python -m unittest discover tests
    ```
 
 2. **Comprehensive test with logging:**
    ```bash
-   python scripts/test_runner.py
+   uv run python scripts/test_runner.py
    ```
 
 3. **Generate full test report:**
    ```bash
-   python scripts/generate_comprehensive_report.py
+   uv run python scripts/generate_comprehensive_report.py
    ```
 
 ### Verifying Changes
 
 1. **Run tests:**
    ```bash
-   python scripts/test_runner.py
+   uv run python scripts/test_runner.py
    ```
 
 2. **Verify documentation:**
    ```bash
-   python scripts/verify_documentation.py
+   uv run python scripts/verify_documentation.py
    ```
 
 3. **Check imports:**
    ```bash
-   python tests/test_imports_comprehensive.py
+   uv run python -m unittest tests.test_imports_comprehensive
    ```
 
 ### Project Structure

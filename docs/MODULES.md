@@ -2,6 +2,10 @@
 
 Comprehensive documentation for all modules in the IVM-XYZ package.
 
+**Concepts (where to look):** IVM vs XYZ numeric units use the constant **`S3`** (see [constants.py](#constantspy) and [BACKGROUND.md](BACKGROUND.md)). Tetrahedron and triangle objects expose **both** IVM-native and XYZ-scaled areas/volumes where applicable. For coordinate conversion between frames, see [conversion module](#conversion-module). Theory and Fuller / Synergetics context: [BACKGROUND.md](BACKGROUND.md); full signatures: [API.md](API.md).
+
+**Layout in the tree:** the installable package and each subpackage include a short `README.md` and `AGENTS.md` (start at [../ivm_xyz/AGENTS.md](../ivm_xyz/AGENTS.md); [../ivm_xyz/core/AGENTS.md](../ivm_xyz/core/AGENTS.md), [../ivm_xyz/conversion/AGENTS.md](../ivm_xyz/conversion/AGENTS.md), [../ivm_xyz/polyhedra/AGENTS.md](../ivm_xyz/polyhedra/AGENTS.md), [../ivm_xyz/visualization/AGENTS.md](../ivm_xyz/visualization/AGENTS.md)).
+
 ## Table of Contents
 
 1. [Core Modules](#core-modules)
@@ -804,7 +808,7 @@ Class for plotting and animating polyhedra.
 
 **Methods**:
 
-- `__init__(output_folder="images")`: Initialize plotter
+- `__init__(output_folder=None)`: Initialize plotter (default `outputs/plots`; see `DEFAULT_PLOT_OUTPUT_DIR` in v0.2+)
   - Creates output folder if it doesn't exist
   
 - `add_polyhedron(vertices, faces, title, file_name)`: Add polyhedron for animation
@@ -831,7 +835,7 @@ Class for plotting and animating polyhedra.
 ```python
 from ivm_xyz.visualization import PolyhedronPlotter
 
-plotter = PolyhedronPlotter(output_folder="images")
+plotter = PolyhedronPlotter()  # or output_folder="outputs/plots"
 
 # Define tetrahedron
 vertices = [

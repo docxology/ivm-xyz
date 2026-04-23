@@ -13,25 +13,42 @@ A powerful Python package for computational geometry, providing tools for workin
 
 ## Installation
 
-### From Source
+### From source (uv)
 
 ```bash
 git clone https://github.com/docxology/ivm-xyz.git
 cd ivm-xyz
-pip install -e .
+uv sync --all-extras
+```
+
+`uv sync` uses **`uv.lock`** when present for pinned dependency resolution.
+
+### From source (pip)
+
+```bash
+git clone https://github.com/docxology/ivm-xyz.git
+cd ivm-xyz
+pip install -e ".[dev,visualization]"
 ```
 
 ### Dependencies
 
 - Python 3.8+
-- numpy
-- matplotlib (optional, for visualization)
-- imageio (optional, for animations)
+- `numpy` (required)
+- `matplotlib` (optional, for visualization; required to run visualization tests)
+- `imageio` (optional, for GIF animation in visualization)
 
-Install dependencies:
+Minimal install (core math only):
+
 ```bash
 pip install -r requirements.txt
 ```
+
+## Repository layout
+
+- **[AGENTS.md](AGENTS.md)** — Short index for tools and contributors (full detail: [docs/AGENTS.md](docs/AGENTS.md)).
+- **[outputs/](outputs/)** — Default generated plots, logs, and reports (v0.2+; see [outputs/README.md](outputs/README.md)). **`images/`** is optional for explicit `output_folder="images"` (legacy v0.1 default).
+- **`working/`** is listed in `.gitignore` for local scratch work; it is not part of the published tree.
 
 ## Quick Start
 
@@ -89,7 +106,7 @@ translated_cube = cube.translate(Qvector((1, 0, 0, 0)))
 ```python
 from ivm_xyz.visualization import PolyhedronPlotter
 
-plotter = PolyhedronPlotter(output_folder="images")
+plotter = PolyhedronPlotter()  # default: outputs/plots/ (v0.2+); override with output_folder=...
 
 # Add polyhedron
 vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1)]
@@ -120,6 +137,7 @@ ivm_xyz/
 
 ## Documentation
 
+- **Per-directory signposts**: Each of `ivm_xyz/`, `tests/`, `scripts/`, `docs/`, etc. has a `README.md` and `AGENTS.md` (see [AGENTS.md](AGENTS.md) for the map).
 - **API Reference**: See [docs/API.md](docs/API.md) - Complete technical API with all method signatures and examples
 - **Module Documentation**: See [docs/MODULES.md](docs/MODULES.md) - Comprehensive module-by-module documentation
 - **Technical Reference**: See [docs/TECHNICAL_REFERENCE.md](docs/TECHNICAL_REFERENCE.md) - Deep technical details for developers
@@ -141,29 +159,26 @@ For more information, see [docs/AGENTS.md](docs/AGENTS.md#utility-scripts).
 
 ## Testing
 
-Run the test suite:
+From the **repository root**:
 
 ```bash
-# Standard unittest
-python -m unittest discover tests
+# Recommended (uv, all extras for visualization tests)
+uv sync --all-extras
+uv run python -m unittest discover tests
+# or
+uv run python -m pytest tests/
 
-# Using pytest
-python -m pytest tests/
+# Test runner (writes under outputs/logs/ and outputs/reports/)
+uv run python scripts/test_runner.py
 
-# Using test runner with detailed logging
-python scripts/test_runner.py
-
-# Generate comprehensive test report
-python scripts/generate_comprehensive_report.py
-
-# Verify documentation
-python scripts/verify_documentation.py
+# Reports / doc verification
+uv run python scripts/generate_comprehensive_report.py
+uv run python scripts/verify_documentation.py
 ```
 
-The test suite includes:
-- 6 unit test files covering all core functionality
-- 4 comprehensive test files for integration and verification
-- 78+ tests ensuring reliability and accuracy
+With **pip** only, install at least `pytest` and `matplotlib` to match CI-style runs, or expect visualization-related tests to be **skipped**.
+
+The suite includes unit modules (`test_vectors.py`, `test_tetrahedron.py`, …) and comprehensive modules (`test_*_comprehensive.py`); see [docs/TESTING_SUMMARY.md](docs/TESTING_SUMMARY.md).
 
 ## Mathematical Background
 
@@ -178,9 +193,11 @@ The IVM (Isotropic Vector Matrix) coordinate system provides a tetrahedral coord
 
 ## Examples
 
-See the `examples/` directory for more usage examples:
-- `basic_usage.py`: Basic operations
-- `visualization_examples.py`: Visualization examples
+See [examples/README.md](examples/README.md) for how to run scripts with `uv run`.
+
+- [examples/basic_usage.py](examples/basic_usage.py) — end-to-end slice of the API
+- [examples/visualization_examples.py](examples/visualization_examples.py) — `PolyhedronPlotter` and optional GIF output
+- [examples/orchestrators/](examples/orchestrators/) — many thin, single-purpose workflows ([index](examples/orchestrators/README.md))
 
 ## Contributing
 
@@ -193,7 +210,7 @@ Contributions are welcome! Please ensure:
 
 ## License
 
-See [LICENSE](LICENSE) for details.
+MIT — see [LICENSE](LICENSE).
 
 ## References
 

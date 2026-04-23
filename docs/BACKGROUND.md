@@ -46,9 +46,10 @@ The package provides comprehensive vector operations including:
 - **Geometric Calculations**: Length, unit vectors, angles between vectors
 
 ### Volume and Area Calculations
-- **Tetrahedron Volume**: Uses Euler's formula modified by Gerald de Jong for high-precision calculations
-- **Triangle Area**: Uses Heron's formula for accurate area computation
-- **Dual Coordinate Systems**: All calculations available in both IVM and XYZ units with automatic conversion
+- **Tetrahedron Volume**: Uses Euler's formula modified by Gerald de Jong for high-precision calculations; `Tetrahedron` and `make_tet` expose IVM- and XYZ-scaled volumes (see [MODULES.md](MODULES.md#tetrahedronpy), constant **`S3`** in [MODULES.md](MODULES.md#constantspy))
+- **Triangle Area**: `Triangle` / `make_tri` use **edge lengths** (Heron); for checks, compare to `Triangle(a,b,c).ivm_area()` / `.xyz_area()` for the same three lengths—not the parallelogram cross-product formula on two embedded edge vectors (that matches a different parameterization)
+- **Dual coordinate systems:** IVM-native values vs Cartesian-scaled values are related through the same geometric object; use **`S3`** where the code converts between IVM and XYZ numeric scales (see [TECHNICAL_REFERENCE.md](TECHNICAL_REFERENCE.md#precision-and-numerical-accuracy))
+- **Dual Coordinate Systems (frames)**: Conversions between XYZ and quadray/IVM coordinates are in the conversion module (see [API.md](API.md#conversion-module))
 
 ### Coordinate System Conversions
 - **Precision**: Round-trip conversion maintains precision (error typically < 1e-10)
@@ -64,3 +65,6 @@ The package provides comprehensive vector operations including:
 - **Static Plots**: 3D visualization with customizable faces, edges, and vertices
 - **Animations**: Rotating GIF generation with parallel processing
 - **Export Formats**: PNG for static plots, GIF for animations
+- **Default path (v0.2+):** `PolyhedronPlotter` writes to **`outputs/plots`** by default; see [MODULES.md](MODULES.md#plotterpy) and [outputs/README.md](../outputs/README.md)
+
+**Further reading in this tree:** [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) (navigation), [API.md](API.md) (signatures), [STRUCTURE.md](STRUCTURE.md) (layout).
