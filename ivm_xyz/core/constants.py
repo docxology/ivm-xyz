@@ -5,7 +5,7 @@ Mathematical constants used throughout the IVM-XYZ package.
 from math import sqrt
 
 # Volume calculation constants
-S3 = sqrt(9/8)  # Conversion factor between IVM and XYZ volumes
+S3 = sqrt(9 / 8)  # Conversion factor between IVM and XYZ volumes
 
 # Square roots
 ROOT2 = sqrt(2)
@@ -28,4 +28,3 @@ __all__ = [
     "R",
     "D",
 ]
-

@@ -11,4 +11,3 @@ __all__ = [
     "DEFAULT_PLOT_OUTPUT_DIR",
     "PolyhedronPlotter",
 ]
-

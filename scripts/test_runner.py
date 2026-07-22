@@ -89,9 +89,9 @@ class TestRunner:
         duration = self.end_time - self.start_time
 
         self.test_results["total"] = result.testsRun
-        self.test_results["passed"] = result.testsRun - len(result.failures) - len(
-            result.errors
-        ) - len(result.skipped)
+        self.test_results["passed"] = (
+            result.testsRun - len(result.failures) - len(result.errors) - len(result.skipped)
+        )
         self.test_results["failed"] = len(result.failures)
         self.test_results["errors"] = len(result.errors)
         self.test_results["skipped"] = len(result.skipped)

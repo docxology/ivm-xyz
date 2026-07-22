@@ -15,4 +15,3 @@ __all__ = [
     "Triangle",
     "make_tri",
 ]
-

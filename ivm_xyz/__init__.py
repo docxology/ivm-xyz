@@ -26,4 +26,3 @@ __all__ = [
     "ivm_to_xyz",
     "__version__",
 ]
-

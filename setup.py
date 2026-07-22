@@ -46,4 +46,3 @@ setup(
     ],
     keywords="geometry, mathematics, tetrahedron, ivm, quadray, synergetics, buckminster fuller",
 )
-
