@@ -111,10 +111,9 @@ class PolyhedronPlotter:
         plt.tight_layout()
 
         if save:
-            if not os.path.exists(self.output_folder):
-                os.makedirs(self.output_folder)
+            os.makedirs(self.output_folder, exist_ok=True)
             plt.savefig(os.path.join(self.output_folder, file_name))
-        else:
+        else:  # pragma: no cover - interactive display, not exercised headlessly
             plt.show()
         plt.close(fig)
 

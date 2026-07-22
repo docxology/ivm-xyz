@@ -37,14 +37,17 @@ visualization = [
 ]
 dev = [
     "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
     "black>=22.0.0",
     "flake8>=4.0.0",
+    "mypy>=1.0.0",
 ]
 
 [project.urls]
 Homepage = "https://github.com/docxology/ivm-xyz"
 Documentation = "https://github.com/docxology/ivm-xyz"
 Repository = "https://github.com/docxology/ivm-xyz"
+Issues = "https://github.com/docxology/ivm-xyz/issues"
 
 [tool.setuptools]
 packages = ["ivm_xyz"]
@@ -61,4 +64,14 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
+
+# python_version is intentionally left unpinned: pinning it to 3.10 makes mypy
+# reject numpy's PEP 695 stubs. Our own code is 3.10-safe (every module uses
+# `from __future__ import annotations` and typing.{Tuple,Dict,List}).
+[tool.mypy]
+files = ["ivm_xyz"]
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
 

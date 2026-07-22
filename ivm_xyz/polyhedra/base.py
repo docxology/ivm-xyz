@@ -73,10 +73,6 @@ class Polyhedron:
         newme.vertexes = newverts
         if hasattr(self, "center"):
             newme.center = self.center + vector
-        if hasattr(self, "suppress"):
-            newme.suppress = self.suppress  # type: ignore[attr-defined]
-            if newme.suppress:  # type: ignore[attr-defined]
-                newme.faces = newme._suppress()  # type: ignore[attr-defined]
         newme.edges = newme._distill()
         return newme
 

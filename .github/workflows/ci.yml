@@ -33,13 +33,15 @@ jobs:
       - name: Sync dependencies (dev + visualization)
         run: uv sync --python ${{ matrix.python-version }} --extra dev --extra visualization
 
-      - name: Run tests
+      - name: Run tests with coverage
         env:
           MPLBACKEND: Agg
-        run: uv run --python ${{ matrix.python-version }} python -m pytest tests/ -v
+        run: >-
+          uv run --python ${{ matrix.python-version }} python -m pytest tests/ -v
+          --cov=ivm_xyz --cov-report=term-missing --cov-fail-under=95
 
   lint:
-    name: Lint (black + flake8)
+    name: Lint & typecheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -49,11 +51,16 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Sync dev dependencies
-        run: uv sync --extra dev
+      # Visualization extra is required so mypy sees matplotlib's real types
+      # (the buffer_rgba type: ignore would otherwise register as unused).
+      - name: Sync dev + visualization dependencies
+        run: uv sync --extra dev --extra visualization
 
       - name: black --check
         run: uv run black --check ivm_xyz/ tests/ scripts/ examples/ setup.py
 
       - name: flake8
         run: uv run flake8 ivm_xyz/ tests/ scripts/ examples/
+
+      - name: mypy
+        run: uv run mypy
