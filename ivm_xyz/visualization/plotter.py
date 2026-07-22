@@ -4,20 +4,32 @@ Visualization tools for polyhedra using matplotlib.
 This module provides functionality to plot and animate polyhedral structures.
 """
 
+from __future__ import annotations
+
 import matplotlib
 
 matplotlib.use("Agg")  # Use non-interactive backend
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-import numpy as np
-import os
-from concurrent.futures import ThreadPoolExecutor
+import os  # noqa: E402
+from concurrent.futures import ThreadPoolExecutor  # noqa: E402
+from typing import Any, Dict, List, Optional, Sequence, Tuple  # noqa: E402
+
+import matplotlib.pyplot as plt  # noqa: E402
+import numpy as np  # noqa: E402
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection  # noqa: E402
 
 # Maximum number of threads for parallel processing
 MAX_THREADS = 8
 
+# Frames per second for generated animations.
+ANIMATION_FPS = 20
+
 # Default save directory (relative to process working directory) — v0.2.0+
 DEFAULT_PLOT_OUTPUT_DIR = "outputs/plots"
+
+# Type aliases for readability.
+Vertex = Tuple[float, float, float]
+Vertices = Sequence[Vertex]
+Faces = Sequence[Sequence[int]]
 
 
 class PolyhedronPlotter:
@@ -27,7 +39,7 @@ class PolyhedronPlotter:
     Supports both static plots and animated GIFs of 3D polyhedral structures.
     """
 
-    def __init__(self, output_folder=None):
+    def __init__(self, output_folder: Optional[str] = None) -> None:
         """
         Initialize the plotter.
 
@@ -40,9 +52,9 @@ class PolyhedronPlotter:
             output_folder = DEFAULT_PLOT_OUTPUT_DIR
         self.output_folder = output_folder
         os.makedirs(self.output_folder, exist_ok=True)
-        self.polyhedrons = []  # List to store polyhedron dictionaries
+        self.polyhedrons: List[Dict[str, Any]] = []  # List to store polyhedron dictionaries
 
-    def add_polyhedron(self, vertices, faces, title, file_name):
+    def add_polyhedron(self, vertices: Vertices, faces: Faces, title: str, file_name: str) -> None:
         """
         Add a polyhedron to the list for animation.
 
@@ -57,12 +69,12 @@ class PolyhedronPlotter:
 
     def plot_polyhedron(
         self,
-        vertices,
-        faces,
-        title="Polyhedron Visualization",
-        save=False,
-        file_name="polyhedron.png",
-    ):
+        vertices: Vertices,
+        faces: Faces,
+        title: str = "Polyhedron Visualization",
+        save: bool = False,
+        file_name: str = "polyhedron.png",
+    ) -> None:
         """
         Plot a polyhedron given its vertices and faces.
 
@@ -99,14 +111,28 @@ class PolyhedronPlotter:
         plt.tight_layout()
 
         if save:
-            if not os.path.exists(self.output_folder):
-                os.makedirs(self.output_folder)
+            os.makedirs(self.output_folder, exist_ok=True)
             plt.savefig(os.path.join(self.output_folder, file_name))
-        else:
+        else:  # pragma: no cover - interactive display, not exercised headlessly
             plt.show()
         plt.close(fig)
 
-    def animate_polyhedron(self, save=False):
+    @staticmethod
+    def _render_frame(fig: "plt.Figure") -> "np.ndarray":
+        """
+        Render a drawn matplotlib figure to an ``(H, W, 3)`` uint8 RGB array.
+
+        Uses ``buffer_rgba`` (the RGB ``tostring_rgb`` API was removed in
+        matplotlib 3.10) and drops the alpha channel. The result is copied so it
+        stays valid after the figure is closed.
+        """
+        fig.canvas.draw()
+        # buffer_rgba() is provided by the Agg backend canvas selected above; the
+        # base canvas type used for static typing does not declare it.
+        rgba = np.asarray(fig.canvas.buffer_rgba())  # type: ignore[attr-defined]
+        return rgba[..., :3].copy()
+
+    def animate_polyhedron(self, save: bool = False) -> None:
         """
         Create animated GIFs of polyhedra in the list.
 
@@ -124,13 +150,13 @@ class PolyhedronPlotter:
 
         num_threads = min(len(self.polyhedrons), MAX_THREADS)
 
-        def plot_and_save(polyhedron):
+        def plot_and_save(polyhedron: Dict[str, Any]) -> None:
             vertices = polyhedron["vertices"]
             faces = polyhedron["faces"]
             title = polyhedron["title"]
             file_name = polyhedron["file_name"]
 
-            images = []
+            images: List[Any] = []
             for angle in range(0, 360, 2):
                 fig = plt.figure(figsize=(10, 8))
                 ax = fig.add_subplot(111, projection="3d")
@@ -158,17 +184,18 @@ class PolyhedronPlotter:
                 plt.title(title, fontsize=14, fontweight="bold")
                 plt.tight_layout()
 
-                # Convert plot to image array
-                fig.canvas.draw()
-                buf = fig.canvas.tostring_rgb()
-                image = np.frombuffer(buf, dtype="uint8")
-                image = image.reshape(fig.canvas.get_width_height()[::-1] + (3,))
-
-                images.append(image)
+                images.append(self._render_frame(fig))
                 plt.close(fig)
 
-            imageio.mimsave(os.path.join(self.output_folder, file_name), images, fps=20)
+            # Duration is milliseconds per frame; `fps` was deprecated by imageio.
+            imageio.mimsave(
+                os.path.join(self.output_folder, file_name),
+                images,
+                duration=1000 / ANIMATION_FPS,
+            )
 
         if save:
             with ThreadPoolExecutor(max_workers=num_threads) as executor:
-                executor.map(plot_and_save, self.polyhedrons)
+                # Consume the iterator so exceptions raised inside worker threads
+                # propagate instead of being silently swallowed.
+                list(executor.map(plot_and_save, self.polyhedrons))

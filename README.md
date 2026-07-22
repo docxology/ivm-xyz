@@ -1,5 +1,12 @@
 # IVM-XYZ
 
+[![CI](https://github.com/docxology/ivm-xyz/actions/workflows/ci.yml/badge.svg)](https://github.com/docxology/ivm-xyz/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Coverage](https://img.shields.io/badge/coverage-99%25-brightgreen.svg)](#testing)
+[![Checked with mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 A powerful Python package for computational geometry, providing tools for working with both XYZ (Cartesian) and IVM (Isotropic Vector Matrix / Quadray) coordinate systems. Inspired by R. Buckminster Fuller's Synergetics.
 
 ## Features
@@ -180,6 +187,28 @@ With **pip** only, install at least `pytest` and `matplotlib` to match CI-style 
 
 The suite includes unit modules (`test_vectors.py`, `test_tetrahedron.py`, …) and comprehensive modules (`test_*_comprehensive.py`); see [docs/TESTING_SUMMARY.md](docs/TESTING_SUMMARY.md).
 
+### Coverage, type checking and linting
+
+The same checks that run in CI (see [`.github/workflows/ci.yml`](.github/workflows/ci.yml)) can be run locally:
+
+```bash
+# Tests with coverage (CI enforces a 95% floor; current coverage is ~99%)
+uv run python -m pytest tests/ --cov=ivm_xyz --cov-report=term-missing
+
+# Static type checking (the package ships py.typed)
+uv run mypy
+
+# Formatting and lint
+uv run black --check ivm_xyz/ tests/ scripts/ examples/ setup.py
+uv run flake8 ivm_xyz/ tests/ scripts/ examples/
+```
+
+Install [pre-commit](https://pre-commit.com/) to run black, flake8 and mypy automatically on every commit:
+
+```bash
+uv run pre-commit install
+```
+
 ## Mathematical Background
 
 This package implements:
@@ -203,10 +232,14 @@ See [examples/README.md](examples/README.md) for how to run scripts with `uv run
 
 Contributions are welcome! Please ensure:
 
-- Code follows PEP 8 style guidelines
-- All new code has corresponding tests
+- Code follows PEP 8 and is formatted with `black` (line length 100)
+- New code has type hints and passes `mypy`
+- All new code has corresponding tests and keeps coverage at/above the 95% floor
 - Documentation is updated
-- Tests pass before submitting
+- `black`, `flake8`, `mypy` and the test suite pass before submitting
+  (installing `pre-commit` runs the first three automatically)
+
+See the [CHANGELOG](CHANGELOG.md) for the release history.
 
 ## License
 

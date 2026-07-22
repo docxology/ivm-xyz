@@ -48,6 +48,8 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+# Stale generated report; the canonical copy lives under outputs/reports/
+/test_report.txt
 
 # Translations
 *.mo

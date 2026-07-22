@@ -30,7 +30,13 @@ setup(
     install_requires=requirements,
     extras_require={
         "visualization": ["matplotlib>=3.0.0", "imageio>=2.0.0"],
-        "dev": ["pytest>=7.0.0", "black>=22.0.0", "flake8>=4.0.0"],
+        "dev": [
+            "pytest>=7.0.0",
+            "pytest-cov>=4.0.0",
+            "black>=22.0.0",
+            "flake8>=4.0.0",
+            "mypy>=1.0.0",
+        ],
     },
     classifiers=[
         "Development Status :: 3 - Alpha",

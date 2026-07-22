@@ -5,15 +5,32 @@ This module provides the foundation for defining polyhedra with vertices,
 faces, and edges.
 """
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Dict, List, Tuple
+
+if TYPE_CHECKING:
+    from ivm_xyz.core.vectors import Qvector
+
 
 class Polyhedron:
     """
     Base class for polyhedra. Designed to be subclassed, not used directly.
 
     Provides methods for scaling, translating, and extracting edges from faces.
+
+    Subclasses are expected to populate the following attributes in ``__init__``:
+    ``name``, ``volume``, ``center``, ``vertexes``, ``faces`` and ``edges``.
     """
 
-    def scale(self, scalefactor):
+    name: str
+    volume: float
+    center: "Qvector"
+    vertexes: Dict[str, "Qvector"]
+    faces: Tuple[Tuple[str, ...], ...]
+    edges: List["Edge"]
+
+    def scale(self, scalefactor: float) -> "Polyhedron":
         """
         Scale the polyhedron by a factor.
 
@@ -39,7 +56,7 @@ class Polyhedron:
 
     __mul__ = __rmul__ = scale
 
-    def translate(self, vector):
+    def translate(self, vector: "Qvector") -> "Polyhedron":
         """
         Translate the polyhedron by a vector.
 
@@ -56,16 +73,12 @@ class Polyhedron:
         newme.vertexes = newverts
         if hasattr(self, "center"):
             newme.center = self.center + vector
-        if hasattr(self, "suppress"):
-            newme.suppress = self.suppress
-            if newme.suppress:
-                newme.faces = newme._suppress()
         newme.edges = newme._distill()
         return newme
 
     __add__ = __radd__ = translate
 
-    def _distill(self):
+    def _distill(self) -> List["Edge"]:
         """
         Extract unique edges from faces.
 
@@ -94,7 +107,7 @@ class Edge:
         v1: Second vertex (Vector or Qvector)
     """
 
-    def __init__(self, v0, v1):
+    def __init__(self, v0: "Qvector", v1: "Qvector") -> None:
         """
         Initialize edge with two vertices.
 
@@ -105,5 +118,5 @@ class Edge:
         self.v0 = v0
         self.v1 = v1
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "Edge from %s to %s" % (self.v0, self.v1)

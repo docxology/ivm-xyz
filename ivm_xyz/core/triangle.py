@@ -2,8 +2,15 @@
 Triangle class for calculating areas in IVM and XYZ coordinate systems.
 """
 
+from __future__ import annotations
+
 from math import sqrt
+from typing import TYPE_CHECKING, Tuple
+
 from ivm_xyz.core.constants import S3
+
+if TYPE_CHECKING:
+    from ivm_xyz.core.vectors import Vector
 
 
 class Triangle:
@@ -17,7 +24,7 @@ class Triangle:
         a, b, c: Edge lengths of the triangle
     """
 
-    def __init__(self, a, b, c):
+    def __init__(self, a: float, b: float, c: float) -> None:
         """
         Initialize triangle with three edge lengths.
 
@@ -30,7 +37,7 @@ class Triangle:
         self.b = b
         self.c = c
 
-    def ivm_area(self):
+    def ivm_area(self) -> float:
         """
         Calculate area using the IVM system.
 
@@ -42,7 +49,7 @@ class Triangle:
         s = (self.a + self.b + self.c) / 2
         return sqrt(s * (s - self.a) * (s - self.b) * (s - self.c))
 
-    def xyz_area(self):
+    def xyz_area(self) -> float:
         """
         Calculate area using the XYZ system.
 
@@ -52,7 +59,7 @@ class Triangle:
         return self.ivm_area() / S3
 
 
-def make_tri(v0, v1):
+def make_tri(v0: Vector, v1: Vector) -> Tuple[float, float]:
     """
     Generate a triangle from two vectors and calculate its areas.
 
