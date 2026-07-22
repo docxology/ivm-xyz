@@ -10,4 +10,14 @@ def _has_matplotlib() -> bool:
         return False
 
 
+def _has_imageio() -> bool:
+    try:
+        import imageio  # noqa: F401
+
+        return True
+    except ImportError:
+        return False
+
+
 HAS_MATPLOTLIB = _has_matplotlib()
+HAS_IMAGEIO = _has_imageio()

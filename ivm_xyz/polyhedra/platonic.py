@@ -60,7 +60,7 @@ class Tetrahedron(Polyhedron):
     Volume: 1 (per Concentric Hierarchy)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         verts = dict(
             a=Qvector((1, 0, 0, 0)),  # A
             b=Qvector((0, 1, 0, 0)),  # B
@@ -83,7 +83,7 @@ class Cube(Polyhedron):
     Volume: 3 (per Concentric Hierarchy)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         verts = {"a": A, "b": B, "c": C, "d": D, "e": E, "f": F, "g": G, "h": H}
 
         self.name = "Cube"
@@ -108,7 +108,7 @@ class Octahedron(Polyhedron):
     Volume: 4 (per Concentric Hierarchy)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         verts = {"i": I, "j": J, "k": K, "l": L, "m": M, "n": N}
 
         self.name = "Octahedron"
@@ -135,7 +135,7 @@ class Icosahedron(Polyhedron):
     Volume: ~18.51 (per Concentric Hierarchy)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.vertexes = dict(o=Oi, p=Pi, q=Qi, r=Ri, s=Si, t=Ti, u=Ui, v=Vi, w=Wi, x=Xi, y=Yi, z=Zi)
 
         self.name = "Icosahedron"
@@ -173,7 +173,7 @@ class Cuboctahedron(Polyhedron):
     Volume: 20 (per Concentric Hierarchy)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.vertexes = dict(o=O, p=P, q=Q, r=R, s=S, t=T, u=U, v=V, w=W, x=X, y=Y, z=Z)
 
         self.name = "Cuboctahedron"

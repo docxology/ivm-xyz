@@ -5,19 +5,19 @@ Mathematical constants used throughout the IVM-XYZ package.
 from math import sqrt
 
 # Volume calculation constants
-S3 = sqrt(9 / 8)  # Conversion factor between IVM and XYZ volumes
+S3: float = sqrt(9 / 8)  # Conversion factor between IVM and XYZ volumes
 
 # Square roots
-ROOT2 = sqrt(2)
-ROOT3 = sqrt(3)
-ROOT5 = sqrt(5)
+ROOT2: float = sqrt(2)
+ROOT3: float = sqrt(3)
+ROOT5: float = sqrt(5)
 
 # Golden ratio
-PHI = (1 + ROOT5) / 2.0
+PHI: float = (1 + ROOT5) / 2.0
 
 # Geometric constants
-R = 0.5  # Radius
-D = 1.0  # Diameter
+R: float = 0.5  # Radius
+D: float = 1.0  # Diameter
 
 __all__ = [
     "S3",

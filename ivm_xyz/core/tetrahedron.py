@@ -5,7 +5,14 @@ Based on Euler volume formula, modified by Gerald de Jong.
 See: http://www.grunch.net/synergetics/quadvols.html
 """
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Tuple
+
 from ivm_xyz.core.constants import S3
+
+if TYPE_CHECKING:
+    from ivm_xyz.core.vectors import Vector
 
 
 class Tetrahedron:
@@ -24,7 +31,7 @@ class Tetrahedron:
         a2, b2, c2, d2, e2, f2: Squared edge lengths
     """
 
-    def __init__(self, a, b, c, d, e, f):
+    def __init__(self, a: float, b: float, c: float, d: float, e: float, f: float) -> None:
         """
         Initialize tetrahedron with six edge lengths.
 
@@ -39,7 +46,7 @@ class Tetrahedron:
         self.e, self.e2 = e, e**2
         self.f, self.f2 = f, f**2
 
-    def ivm_volume(self):
+    def ivm_volume(self) -> float:
         """
         Calculate volume using the IVM system.
 
@@ -51,7 +58,7 @@ class Tetrahedron:
         ivmvol = ((self._addopen() - self._addclosed() - self._addopposite()) / 2) ** 0.5
         return ivmvol
 
-    def xyz_volume(self):
+    def xyz_volume(self) -> float:
         """
         Calculate volume using the XYZ system.
 
@@ -61,7 +68,7 @@ class Tetrahedron:
         xyzvol = self.ivm_volume() / S3
         return xyzvol
 
-    def _addopen(self):
+    def _addopen(self) -> float:
         """
         Calculate the sum of open products for volume calculation.
 
@@ -86,7 +93,7 @@ class Tetrahedron:
         sumval += d2 * f2 * c2
         return sumval
 
-    def _addclosed(self):
+    def _addclosed(self) -> float:
         """
         Calculate the sum of closed products for volume calculation.
 
@@ -103,7 +110,7 @@ class Tetrahedron:
         sumval += a2 * c2 * f2
         return sumval
 
-    def _addopposite(self):
+    def _addopposite(self) -> float:
         """
         Calculate the sum of opposite products for volume calculation.
 
@@ -119,7 +126,7 @@ class Tetrahedron:
         return sumval
 
 
-def make_tet(v0, v1, v2):
+def make_tet(v0: Vector, v1: Vector, v2: Vector) -> Tuple[float, float]:
     """
     Generate a tetrahedron from three vectors and calculate its volumes.
 

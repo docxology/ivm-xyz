@@ -5,13 +5,16 @@ This module provides Vector (XYZ Cartesian) and Qvector (IVM Quadray) classes
 for geometric calculations in both coordinate systems.
 """
 
-from math import radians, degrees, cos, sin, acos
-import math
-from operator import add, sub, mul, neg
-from collections import namedtuple
+from __future__ import annotations
 
-XYZ = namedtuple("xyz_vector", "x y z")
-IVM = namedtuple("ivm_vector", "a b c d")
+import math
+from collections import namedtuple
+from math import acos, cos, degrees, radians, sin
+from operator import add, mul, neg, sub
+from typing import Iterable, Tuple
+
+XYZ = namedtuple("XYZ", "x y z")
+IVM = namedtuple("IVM", "a b c d")
 
 root2 = 2.0**0.5
 
@@ -24,58 +27,58 @@ class Vector:
         xyz: Named tuple containing (x, y, z) coordinates
     """
 
-    def __init__(self, arg):
+    def __init__(self, arg: Iterable[float]) -> None:
         """Initialize a vector at an (x,y,z)"""
         self.xyz = XYZ(*map(float, arg))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return repr(self.xyz)
 
     @property
-    def x(self):
+    def x(self) -> float:
         return self.xyz.x
 
     @property
-    def y(self):
+    def y(self) -> float:
         return self.xyz.y
 
     @property
-    def z(self):
+    def z(self) -> float:
         return self.xyz.z
 
-    def __mul__(self, scalar):
+    def __mul__(self, scalar: float) -> Vector:
         """Return vector (self) * scalar."""
         newcoords = [scalar * dim for dim in self.xyz]
         return type(self)(newcoords)
 
     __rmul__ = __mul__  # allow scalar * vector
 
-    def __truediv__(self, scalar):
+    def __truediv__(self, scalar: float) -> Vector:
         """Return vector (self) * 1/scalar"""
         return self.__mul__(1.0 / scalar)
 
-    def __add__(self, v1):
+    def __add__(self, v1: Vector) -> Vector:
         """Add a vector to this vector, return a vector"""
         newcoords = map(add, v1.xyz, self.xyz)
         return type(self)(newcoords)
 
-    def __sub__(self, v1):
+    def __sub__(self, v1: Vector) -> Vector:
         """Subtract vector from this vector, return a vector"""
         return self.__add__(-v1)
 
-    def __neg__(self):
+    def __neg__(self) -> Vector:
         """Return a vector, the negative of this one."""
         return type(self)(tuple(map(neg, self.xyz)))
 
-    def unit(self):
+    def unit(self) -> Vector:
         """Return unit vector in same direction."""
         return self.__mul__(1.0 / self.length())
 
-    def dot(self, v1):
+    def dot(self, v1: Vector) -> float:
         """Return scalar dot product of this with another vector."""
         return sum(map(mul, v1.xyz, self.xyz))
 
-    def cross(self, v1):
+    def cross(self, v1: Vector) -> Vector:
         """Return the vector cross product of this with another vector"""
         newcoords = (
             self.y * v1.z - self.z * v1.y,
@@ -84,17 +87,17 @@ class Vector:
         )
         return type(self)(newcoords)
 
-    def length(self):
+    def length(self) -> float:
         """Return this vector's length"""
         return self.dot(self) ** 0.5
 
-    def angle(self, v1):
+    def angle(self, v1: Vector) -> float:
         """Return angle between self and v1, in decimal degrees"""
         costheta = round(self.dot(v1) / (self.length() * v1.length()), 10)
         theta = degrees(acos(costheta))
         return round(theta, 10)
 
-    def rotaxis(self, vAxis, deg):
+    def rotaxis(self, vAxis: Vector, deg: float) -> Vector:
         """
         Rotate around vAxis by deg degrees.
         Realign rotation axis with Z-axis, realign self accordingly,
@@ -107,7 +110,7 @@ class Vector:
         newv = newv.roty(-phi).rotz(theta)
         return type(self)(newv.xyz)
 
-    def rotx(self, deg):
+    def rotx(self, deg: float) -> Vector:
         """Rotate around X-axis by deg degrees."""
         rad = radians(deg)
         newy = cos(rad) * self.y - sin(rad) * self.z
@@ -115,7 +118,7 @@ class Vector:
         newxyz = [round(p, 8) for p in (self.x, newy, newz)]
         return type(self)(newxyz)
 
-    def roty(self, deg):
+    def roty(self, deg: float) -> Vector:
         """Rotate around Y-axis by deg degrees."""
         rad = radians(deg)
         newx = cos(rad) * self.x - sin(rad) * self.z
@@ -123,7 +126,7 @@ class Vector:
         newxyz = [round(p, 8) for p in (newx, self.y, newz)]
         return type(self)(newxyz)
 
-    def rotz(self, deg):
+    def rotz(self, deg: float) -> Vector:
         """Rotate around Z-axis by deg degrees."""
         rad = radians(deg)
         newx = cos(rad) * self.x - sin(rad) * self.y
@@ -131,7 +134,7 @@ class Vector:
         newxyz = [round(p, 8) for p in (newx, newy, self.z)]
         return type(self)(newxyz)
 
-    def spherical(self):
+    def spherical(self) -> Tuple[float, float, float]:
         """
         Return (r, phi, theta) spherical coordinates based
         on current (x, y, z).
@@ -164,7 +167,7 @@ class Vector:
 
         return (r, phi, theta)
 
-    def quadray(self):
+    def quadray(self) -> Qvector:
         """
         Return (a, b, c, d) quadray coordinates based on current (x, y, z).
 
@@ -191,75 +194,78 @@ class Qvector:
         coords: Named tuple containing (a, b, c, d) coordinates
     """
 
-    def __init__(self, arg):
+    def __init__(self, arg: Iterable[float]) -> None:
         """Initialize a quadray vector from (a, b, c, d) tuple."""
         self.coords = self.norm(arg)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return repr(self.coords)
 
-    def norm(self, arg):
+    def norm(self, arg: Iterable[float]) -> IVM:
         """Normalize such that 4-tuple all non-negative members."""
+        arg = tuple(arg)
         return IVM(*tuple(map(sub, arg, [min(arg)] * 4)))
 
-    def norm0(self):
+    def norm0(self) -> IVM:
         """Normalize such that sum of 4-tuple members = 0"""
         q = self.coords
         return IVM(*tuple(map(sub, q, [sum(q) / 4.0] * 4)))
 
     @property
-    def a(self):
+    def a(self) -> float:
         return self.coords.a
 
     @property
-    def b(self):
+    def b(self) -> float:
         return self.coords.b
 
     @property
-    def c(self):
+    def c(self) -> float:
         return self.coords.c
 
     @property
-    def d(self):
+    def d(self) -> float:
         return self.coords.d
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Qvector):
+            return NotImplemented
         return self.coords == other.coords
 
-    def __lt__(self, other):
+    def __lt__(self, other: Qvector) -> bool:
         return self.coords < other.coords
 
-    def __gt__(self, other):
+    def __gt__(self, other: Qvector) -> bool:
         return self.coords > other.coords
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.coords)
 
-    def __mul__(self, scalar):
+    def __mul__(self, scalar: float) -> Qvector:
         """Return vector (self) * scalar."""
         newcoords = [scalar * dim for dim in self.coords]
         return Qvector(newcoords)
 
     __rmul__ = __mul__  # allow scalar * vector
 
-    def __truediv__(self, scalar):
+    def __truediv__(self, scalar: float) -> Qvector:
         """Return vector (self) * 1/scalar"""
         return self.__mul__(1.0 / scalar)
 
-    def __add__(self, v1):
+    def __add__(self, v1: Qvector) -> Qvector:
         """Add a vector to this vector, return a vector"""
         newcoords = tuple(map(add, v1.coords, self.coords))
         return Qvector(newcoords)
 
-    def __sub__(self, v1):
+    def __sub__(self, v1: Qvector) -> Qvector:
         """Subtract vector from this vector, return a vector"""
         return self.__add__(-v1)
 
-    def __neg__(self):
+    def __neg__(self) -> Qvector:
         """Return a vector, the negative of this one."""
         return Qvector(tuple(map(neg, self.coords)))
 
-    def dot(self, v1):
+    def dot(self, v1: Qvector) -> float:
         """
         Return the dot product of self with another vector.
 
@@ -268,11 +274,11 @@ class Qvector:
         """
         return 0.5 * sum(map(mul, self.norm0(), v1.norm0()))
 
-    def length(self):
+    def length(self) -> float:
         """Return this vector's length"""
         return self.dot(self) ** 0.5
 
-    def cross(self, v1):
+    def cross(self, v1: Qvector) -> Qvector:
         """
         Return the cross product of self with another vector.
 
@@ -314,11 +320,11 @@ class Qvector:
         )
         return k * sum_result
 
-    def angle(self, v1):
+    def angle(self, v1: Qvector) -> float:
         """Return angle between self and v1 in degrees."""
         return self.xyz().angle(v1.xyz())
 
-    def xyz(self):
+    def xyz(self) -> Vector:
         """
         Convert quadray coordinates to XYZ (Cartesian) coordinates.
 
@@ -334,7 +340,7 @@ class Qvector:
 class Svector(Vector):
     """Subclass of Vector that takes spherical coordinate arguments."""
 
-    def __init__(self, arg):
+    def __init__(self, arg: Iterable[float]) -> None:
         # if returning from Vector calc method, spherical is true
         arg = Vector(arg).spherical()
 
@@ -350,26 +356,26 @@ class Svector(Vector):
         )
         self.xyz = XYZ(*coords)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "Svector " + str(self.spherical())
 
 
 # Module-level convenience functions
-def dot(a, b):
+def dot(a: Vector, b: Vector) -> float:
     """Return dot product of two vectors."""
     return a.dot(b)
 
 
-def cross(a, b):
+def cross(a: Vector, b: Vector) -> Vector:
     """Return cross product of two vectors."""
     return a.cross(b)
 
 
-def angle(a, b):
+def angle(a: Vector, b: Vector) -> float:
     """Return angle between two vectors in degrees."""
     return a.angle(b)
 
 
-def length(a):
+def length(a: Vector) -> float:
     """Return length of a vector."""
     return a.length()
