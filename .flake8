@@ -1,0 +1,30 @@
+[flake8]
+max-line-length = 100
+# Black compatibility: E203 (whitespace before ':') and W503 (line break before
+# binary operator) conflict with black's formatting.
+extend-ignore = E203, W503
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    build,
+    dist,
+    *.egg-info,
+    archive,
+    working
+per-file-ignores =
+    # Package __init__ files intentionally re-export the public API.
+    __init__.py: F401, F403
+    # matplotlib backend must be selected before importing pyplot, so those
+    # imports legitimately appear after a statement (E402).
+    ivm_xyz/visualization/plotter.py: E402
+    # The comprehensive import tests deliberately import symbols to assert they
+    # are importable; unused-import / redefinition / unused-local checks do not
+    # apply to that pattern.
+    tests/*: F401, F811, F841
+    # Documentation-verification tool: imports the public API only to confirm it
+    # resolves (F401), after inserting the repo root on sys.path (E402).
+    scripts/verify_documentation.py: F401, E402, E501
+    # Illustrative example scripts keep output/docstring lines unwrapped for
+    # readability rather than splitting them to satisfy the line-length limit.
+    examples/*: E501

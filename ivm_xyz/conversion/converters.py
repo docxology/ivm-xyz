@@ -6,7 +6,6 @@ and 4D Quadray (IVM) coordinates without requiring Vector/Qvector objects.
 """
 
 from math import sqrt
-from ivm_xyz.core.vectors import Vector, Qvector
 
 root2 = sqrt(2.0)
 

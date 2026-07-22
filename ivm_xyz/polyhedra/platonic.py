@@ -5,9 +5,8 @@ These classes provide canonical definitions of polyhedra following
 R. Buckminster Fuller's Concentric Hierarchy.
 """
 
-import math
 from ivm_xyz.polyhedra.base import Polyhedron
-from ivm_xyz.core.vectors import Qvector, Vector
+from ivm_xyz.core.vectors import Qvector
 from ivm_xyz.core.constants import PHI
 
 ORIGIN = Qvector((0, 0, 0, 0))

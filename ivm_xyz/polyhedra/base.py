@@ -5,8 +5,6 @@ This module provides the foundation for defining polyhedra with vertices,
 faces, and edges.
 """
 
-from ivm_xyz.core.vectors import Vector, Qvector
-
 
 class Polyhedron:
     """

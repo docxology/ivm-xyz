@@ -5,7 +5,6 @@ Based on Euler volume formula, modified by Gerald de Jong.
 See: http://www.grunch.net/synergetics/quadvols.html
 """
 
-from math import sqrt
 from ivm_xyz.core.constants import S3
 
 

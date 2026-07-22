@@ -4,7 +4,7 @@ Basic usage examples for the IVM-XYZ package.
 
 from ivm_xyz import Vector, Qvector, Tetrahedron, make_tet, Triangle, make_tri
 from ivm_xyz.conversion import xyz_to_ivm, ivm_to_xyz
-from ivm_xyz.core.constants import D, R, PHI
+from ivm_xyz.core.constants import D
 
 
 def example_vectors():
@@ -64,7 +64,7 @@ def example_tetrahedron():
     ivm_vol = tet.ivm_volume()
     xyz_vol = tet.xyz_volume()
 
-    print(f"Unit tetrahedron:")
+    print("Unit tetrahedron:")
     print(f"  IVM Volume: {ivm_vol:.6f}")
     print(f"  XYZ Volume: {xyz_vol:.6f}")
 
@@ -74,7 +74,7 @@ def example_tetrahedron():
     v3 = Vector((0, 0, 0.5))
     ivm_vol2, xyz_vol2 = make_tet(v1, v2, v3)
 
-    print(f"\nTetrahedron from vectors:")
+    print("\nTetrahedron from vectors:")
     print(f"  IVM Volume: {ivm_vol2:.6f}")
     print(f"  XYZ Volume: {xyz_vol2:.6f}")
     print(f"  Expected XYZ: {1/6:.6f}")
@@ -90,7 +90,7 @@ def example_triangle():
     ivm_area = tri.ivm_area()
     xyz_area = tri.xyz_area()
 
-    print(f"Equilateral triangle (side=1):")
+    print("Equilateral triangle (side=1):")
     print(f"  IVM Area: {ivm_area:.6f}")
     print(f"  XYZ Area: {xyz_area:.6f}")
 
@@ -99,7 +99,7 @@ def example_triangle():
     v2 = Vector((0, 1, 0))
     ivm_area2, xyz_area2 = make_tri(v1, v2)
 
-    print(f"\nTriangle from vectors:")
+    print("\nTriangle from vectors:")
     print(f"  IVM Area: {ivm_area2:.6f}")
     print(f"  XYZ Area: {xyz_area2:.6f}")
     print()
@@ -142,7 +142,7 @@ def example_polyhedra():
     print(f"  Faces: {len(octa.faces)}")
 
     # Edge counting
-    print(f"\nEdge counting:")
+    print("\nEdge counting:")
     for f in [1, 2, 3, 4, 5]:
         edges = tet_edges(f)
         print(f"  Frequency {f}: {edges} edges")
