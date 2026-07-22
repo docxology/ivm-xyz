@@ -2,7 +2,7 @@
 
 ## Code Style and Standards
 
-- Use Python 3.8+ syntax and features
+- Use Python 3.10+ syntax and features
 - Follow PEP 8 style guidelines
 - Use type hints where appropriate
 - Write comprehensive docstrings for all classes and functions

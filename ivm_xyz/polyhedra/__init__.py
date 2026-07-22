@@ -34,4 +34,3 @@ __all__ = [
 ]
 
 # Note: PolyTetrahedron is renamed to avoid conflict with core.Tetrahedron
-

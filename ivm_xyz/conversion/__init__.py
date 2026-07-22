@@ -8,4 +8,3 @@ __all__ = [
     "xyz_to_ivm",
     "ivm_to_xyz",
 ]
-

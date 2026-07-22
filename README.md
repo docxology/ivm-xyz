@@ -33,7 +33,7 @@ pip install -e ".[dev,visualization]"
 
 ### Dependencies
 
-- Python 3.8+
+- Python 3.10+
 - `numpy` (required)
 - `matplotlib` (optional, for visualization; required to run visualization tests)
 - `imageio` (optional, for GIF animation in visualization)

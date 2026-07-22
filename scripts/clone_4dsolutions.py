@@ -24,7 +24,7 @@ os.makedirs(USERNAME, exist_ok=True)
 # Clone each repository
 for repo in repos:
     print(f"Cloning {repo.name}...")
-    
+
     # Clone the repository into a subdirectory with the repository name
     os.system(f"git clone {repo.clone_url} {USERNAME}/{repo.name}")
 

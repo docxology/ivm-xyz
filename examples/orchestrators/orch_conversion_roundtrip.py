@@ -57,9 +57,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     print("\n=== Vector <-> Qvector (vector_to_qvector / qvector_to_vector) ===")
     v = Vector((2.0, -0.5, 1.0))
     v_back = qvector_to_vector(vector_to_qvector(v))
-    print(
-        f"  in  ({v.x}, {v.y}, {v.z}) out ({v_back.x:.6f}, {v_back.y:.6f}, {v_back.z:.6f})"
-    )
+    print(f"  in  ({v.x}, {v.y}, {v.z}) out ({v_back.x:.6f}, {v_back.y:.6f}, {v_back.z:.6f})")
     if args.check:
         for a, b in ((v.x, v_back.x), (v.y, v_back.y), (v.z, v_back.z)):
             if not math.isclose(a, b, rel_tol=rtol, abs_tol=atol):
