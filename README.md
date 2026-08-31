@@ -2,8 +2,9 @@
 
 [![CI](https://github.com/docxology/ivm-xyz/actions/workflows/ci.yml/badge.svg)](https://github.com/docxology/ivm-xyz/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/downloads/)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Coverage](https://img.shields.io/badge/coverage-99%25-brightgreen.svg)](#testing)
+[![Coverage](https://img.shields.io/badge/coverage-95%25%20floor%20(CI%20enforced)-brightgreen.svg)](#testing)
 [![Checked with mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
@@ -54,6 +55,8 @@ pip install -r requirements.txt
 ## Repository layout
 
 - **[AGENTS.md](AGENTS.md)** — Short index for tools and contributors (full detail: [docs/AGENTS.md](docs/AGENTS.md)).
+- **[TODO.md](TODO.md)** — Canonical backlog: current next actions and open items (single source of truth for "what to do next").
+- **[REVIEW_LOG_2026-08-31.md](REVIEW_LOG_2026-08-31.md)** — Dated audit log (append-only; newest entry wins).
 - **[outputs/](outputs/)** — Default generated plots, logs, and reports (v0.2+; see [outputs/README.md](outputs/README.md)). **`images/`** is optional for explicit `output_folder="images"` (legacy v0.1 default).
 - **`working/`** is listed in `.gitignore` for local scratch work; it is not part of the published tree.
 
@@ -192,7 +195,7 @@ The suite includes unit modules (`test_vectors.py`, `test_tetrahedron.py`, …) 
 The same checks that run in CI (see [`.github/workflows/ci.yml`](.github/workflows/ci.yml)) can be run locally:
 
 ```bash
-# Tests with coverage (CI enforces a 95% floor; current coverage is ~99%)
+# Tests with coverage (CI enforces a 95% floor; check current coverage with this command)
 uv run python -m pytest tests/ --cov=ivm_xyz --cov-report=term-missing
 
 # Static type checking (the package ships py.typed)

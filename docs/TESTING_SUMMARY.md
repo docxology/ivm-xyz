@@ -23,6 +23,8 @@ The package is covered by `unittest` modules under `tests/` (see file list below
 
 Run `uv run pytest tests/ -q` or `uv run python -m unittest discover tests` for current counts. With **all** extras, expect on the order of **80+** collected tests; without **matplotlib**, visualization cases are **skipped** (so totals differ).
 
+**Verified 2026-08-31** (`uv run pytest tests/ -q`, exit 0): **111 passed, 1 skipped**. The per-file counts below are illustrative of what each file covers, not a live tally; the command above is authoritative.
+
 The sections below describe **what** is covered, not a frozen historical run.
 
 ### Comprehensive Test Modules
@@ -99,7 +101,7 @@ All test files are located in the `tests/` directory:
 - ✅ `tests/test_integration_comprehensive.py` - 5 tests
 - ✅ `tests/test_visualization_comprehensive.py` - 7 tests
 
-**Total**: 11 test files with 83+ tests
+**Total**: 11 test files; live count is 111 passed / 1 skipped as of 2026-08-31 (see snapshot above; re-run the command for current numbers).
 
 ## Key Verifications
 
