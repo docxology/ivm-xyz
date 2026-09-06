@@ -238,9 +238,6 @@ Verifies that documentation matches implementation:
 uv run python scripts/verify_documentation.py
 ```
 
-### `scripts/clone_4dsolutions.py`
-Utility script for cloning reference code (development use only).
-
 ## Mathematical Background
 
 The package implements:
