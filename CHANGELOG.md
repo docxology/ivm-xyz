@@ -64,6 +64,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Dead/broken `suppress` branch in `Polyhedron.translate` (it referenced a
   `_suppress` method that exists nowhere and would raise if reached).
+- Redundant `setup.py`: `pyproject.toml` is the single source of packaging
+  truth; CI black scope and docs updated accordingly.
 
 ## [0.2.0]
 
