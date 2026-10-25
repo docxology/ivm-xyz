@@ -156,4 +156,3 @@ uv run python scripts/verify_documentation.py
 - Core and conversion numerics, polyhedra, and (when **matplotlib** is present) visualization file output
 - Import graph and public exports
 - [scripts/verify_documentation.py](../scripts/verify_documentation.py) cross-checks API mentions and module importability
-

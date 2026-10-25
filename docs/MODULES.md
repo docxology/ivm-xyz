@@ -810,13 +810,13 @@ Class for plotting and animating polyhedra.
 
 - `__init__(output_folder=None)`: Initialize plotter (default `outputs/plots`; see `DEFAULT_PLOT_OUTPUT_DIR` in v0.2+)
   - Creates output folder if it doesn't exist
-  
+
 - `add_polyhedron(vertices, faces, title, file_name)`: Add polyhedron for animation
   - `vertices`: List of (x, y, z) tuples
   - `faces`: List of tuples, each representing vertex indices forming a face
   - `title`: Title of the polyhedron
   - `file_name`: Name of the file to save animation as
-  
+
 - `plot_polyhedron(vertices, faces, title, save, file_name)`: Plot single polyhedron
   - `vertices`: List of (x, y, z) tuples
   - `faces`: List of tuples, each representing vertex indices forming a face
@@ -824,7 +824,7 @@ Class for plotting and animating polyhedra.
   - `save`: Boolean, whether to save the plot (default: False)
   - `file_name`: Name of file to save (default: "polyhedron.png")
   - Creates 3D plot with vertices, edges, and faces
-  
+
 - `animate_polyhedron(save)`: Create animated GIFs of polyhedra
   - `save`: Boolean, whether to save animations
   - Uses parallel processing (up to MAX_THREADS = 8)
@@ -949,4 +949,3 @@ All polyhedra follow R. Buckminster Fuller's Concentric Hierarchy:
 - Euler Volume Formula: http://www.grunch.net/synergetics/quadvols.html
 - Gerald de Jong's modifications to Euler formula
 - OEIS sequences: A007531, A035006, A300758, A069074
-

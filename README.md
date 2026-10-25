@@ -216,7 +216,7 @@ uv run pre-commit install
 This package implements:
 
 - **Euler Volume Formula**: For tetrahedron volume calculation
-- **Heron's Formula**: For triangle area calculation  
+- **Heron's Formula**: For triangle area calculation
 - **Quadray Coordinates**: 4D coordinate system for IVM
 - **Concentric Hierarchy**: Buckminster Fuller's geometric system
 

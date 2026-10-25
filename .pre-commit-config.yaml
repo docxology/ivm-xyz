@@ -1,5 +1,8 @@
 # Run `uv run pre-commit install` once, then these hooks run on every commit.
 # Update pinned revs with `uv run pre-commit autoupdate`.
+# Legacy reference (archive/) and gitignored scratch (working/) are outside the
+# lint/format surface, matching .flake8 excludes and the CI invocation set.
+exclude: ^(archive/|working/)
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0

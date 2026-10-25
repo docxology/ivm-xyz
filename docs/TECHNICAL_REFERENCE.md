@@ -373,4 +373,3 @@ z = r × cos(phi)
 - **Gerald de Jong**: Modifications to Euler formula
 - **OEIS Sequences**: A007531, A035006, A300758, A069074
 - **Buckminster Fuller**: "Synergetics: Explorations in the Geometry of Thinking"
-

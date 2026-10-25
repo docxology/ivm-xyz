@@ -176,7 +176,7 @@ Return unit vector (normalized) in same direction.
 
 **Mathematical Operation**: `v' = v / ||v||` where `||v||` is the length
 
-**Raises**: 
+**Raises**:
 - ZeroDivisionError if vector length is zero
 
 **Example**:
@@ -227,7 +227,7 @@ Calculate cross product (vector product) with another vector.
 
 **Returns**: `Vector` - Cross product vector (perpendicular to both input vectors)
 
-**Mathematical Operation**: 
+**Mathematical Operation**:
 ```
 v × v1 = (y*z1 - z*y1, z*x1 - x*z1, x*y1 - y*x1)
 ```
@@ -267,7 +267,7 @@ Rotate vector around an arbitrary axis by specified degrees.
 
 **Returns**: `Vector` - Rotated vector
 
-**Algorithm**: 
+**Algorithm**:
 1. Realign rotation axis with Z-axis
 2. Realign vector accordingly
 3. Rotate by `deg` degrees around Z-axis
@@ -1437,7 +1437,7 @@ Number of contact points between equal spheres arranged in a tetrahedron with fr
 
 **Returns**: `int` - Total number of edges/contact points
 
-**Formula**: 
+**Formula**:
 - Layer 1: 6 edges
 - Layer N (N>1): `previous + tri(N) * 6`
 
@@ -1631,7 +1631,7 @@ Initialize the plotter.
 **Parameters**:
 - `output_folder` (str, optional): Directory to save output images/animations. Default: `None` means use `DEFAULT_PLOT_OUTPUT_DIR` (``"outputs/plots"`` as of v0.2.0; relative to the process current working directory).
 
-**Behavior**: 
+**Behavior**:
 - Creates output folder if it doesn't exist
 - Initializes empty `polyhedrons` list
 
