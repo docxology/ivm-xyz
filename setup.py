@@ -24,12 +24,13 @@ setup(
     long_description_content_type="text/markdown",
     author="IVM-XYZ Contributors",
     author_email="",
+    license="MIT",
     url="https://github.com/docxology/ivm-xyz",
     packages=find_packages(exclude=["tests", "examples", "docs", "working"]),
-    python_requires=">=3.10",
+    python_requires=">=3.11",
     install_requires=requirements,
     extras_require={
-        "visualization": ["matplotlib>=3.0.0", "imageio>=2.0.0"],
+        "visualization": ["matplotlib>=3.0.0", "imageio>=2.0.0", "pillow>=13.0.0"],
         "dev": [
             "pytest>=7.0.0",
             "pytest-cov>=4.0.0",
@@ -45,10 +46,9 @@ setup(
         "Topic :: Scientific/Engineering :: Mathematics",
         "Topic :: Scientific/Engineering :: Physics",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
-        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.13",
     ],
     keywords="geometry, mathematics, tetrahedron, ivm, quadray, synergetics, buckminster fuller",
 )

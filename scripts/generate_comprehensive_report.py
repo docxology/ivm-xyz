@@ -16,11 +16,13 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 
-def run_command(cmd, description):
-    """Run a command and return output."""
+def run_command(cmd, description, env=None):
+    """Run a command (argv list, no shell) and return output."""
     logger.info(f"Running: {description}")
     try:
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=Path.cwd())
+        result = subprocess.run(
+            cmd, shell=False, capture_output=True, text=True, cwd=Path.cwd(), env=env
+        )
         return result.returncode == 0, result.stdout, result.stderr
     except Exception as e:
         logger.error(f"Error running command: {e}")
@@ -41,7 +43,9 @@ def collect_test_results():
     results = {}
     for test_file in test_files:
         if Path(test_file).exists():
-            success, stdout, stderr = run_command(f"python3 {test_file} -v", f"Running {test_file}")
+            success, stdout, stderr = run_command(
+                [sys.executable, test_file, "-v"], f"Running {test_file}"
+            )
             results[test_file] = {"success": success, "stdout": stdout, "stderr": stderr}
 
     return results
@@ -59,7 +63,8 @@ def generate_report():
     # Run all tests
     logger.info("Running comprehensive test suite...")
     success, stdout, stderr = run_command(
-        "python3 -m unittest discover tests -v", "Running all unit tests"
+        [sys.executable, "-m", "unittest", "discover", "tests", "-v"],
+        "Running all unit tests",
     )
 
     # Collect comprehensive test results
@@ -68,7 +73,9 @@ def generate_report():
     # Verify documentation
     logger.info("Verifying documentation...")
     doc_success, doc_stdout, doc_stderr = run_command(
-        "PYTHONPATH=. python3 scripts/verify_documentation.py", "Verifying documentation"
+        [sys.executable, "scripts/verify_documentation.py"],
+        "Verifying documentation",
+        env={**os.environ, "PYTHONPATH": str(REPO_ROOT)},
     )
 
     # Generate report file (default under outputs/reports; gitignored)

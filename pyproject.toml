@@ -7,8 +7,9 @@ name = "ivm-xyz"
 version = "0.2.0"
 description = "Convert between XYZ and IVM geometric spaces"
 readme = "README.md"
-requires-python = ">=3.10"
-license = {text = "MIT"}
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     {name = "IVM-XYZ Contributors"}
 ]
@@ -20,10 +21,9 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: Scientific/Engineering :: Physics",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.13",
 ]
 
 dependencies = [
@@ -34,6 +34,8 @@ dependencies = [
 visualization = [
     "matplotlib>=3.0.0",
     "imageio>=2.0.0",
+    # Security floor: pillow is transitive via matplotlib/imageio (GHSA-8g5g-8vmr-9782).
+    "pillow>=13.0.0",
 ]
 dev = [
     "pytest>=7.0.0",
@@ -50,14 +52,20 @@ Repository = "https://github.com/docxology/ivm-xyz"
 Issues = "https://github.com/docxology/ivm-xyz/issues"
 
 [tool.setuptools]
-packages = ["ivm_xyz"]
+packages = [
+    "ivm_xyz",
+    "ivm_xyz.core",
+    "ivm_xyz.conversion",
+    "ivm_xyz.polyhedra",
+    "ivm_xyz.visualization",
+]
 
 [tool.setuptools.package-data]
 ivm_xyz = ["py.typed"]
 
 [tool.black]
 line-length = 100
-target-version = ["py310", "py311", "py312"]
+target-version = ["py311", "py312", "py313"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
