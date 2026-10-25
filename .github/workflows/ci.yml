@@ -63,7 +63,7 @@ jobs:
         run: uv lock --check
 
       - name: black --check
-        run: uv run black --check ivm_xyz/ tests/ scripts/ examples/ setup.py
+        run: uv run black --check ivm_xyz/ tests/ scripts/ examples/
 
       - name: flake8
         run: uv run flake8 ivm_xyz/ tests/ scripts/ examples/

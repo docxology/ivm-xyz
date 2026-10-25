@@ -201,7 +201,7 @@ uv run python -m pytest tests/ --cov=ivm_xyz --cov-report=term-missing
 uv run mypy
 
 # Formatting and lint
-uv run black --check ivm_xyz/ tests/ scripts/ examples/ setup.py
+uv run black --check ivm_xyz/ tests/ scripts/ examples/
 uv run flake8 ivm_xyz/ tests/ scripts/ examples/
 ```
 

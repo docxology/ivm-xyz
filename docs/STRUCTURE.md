@@ -20,7 +20,6 @@ ivm-xyz/
 ├── README.md
 ├── AGENTS.md                # Short index; full agent doc is docs/AGENTS.md
 ├── pyproject.toml
-├── setup.py
 ├── requirements.txt
 └── LICENSE
 ```

@@ -33,7 +33,6 @@ Visualization and any import of `ivm_xyz.visualization` require **matplotlib** (
 ## Packaging
 
 - Metadata: [pyproject.toml](pyproject.toml) (authoritative for `[project]`).
-- [setup.py](setup.py) mirrors install requirements; keep versions aligned on release.
 - License: [LICENSE](LICENSE) (MIT).
 
 ## Documentation index

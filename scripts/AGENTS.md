@@ -24,4 +24,4 @@ uv run python scripts/generate_comprehensive_report.py
 
 ## Not packaged
 
-These files are not part of the `ivm_xyz` distribution (`setup.py` / `pyproject` exclude `scripts` from the wheel).
+These files are not part of the `ivm_xyz` distribution (`pyproject.toml` excludes `scripts` from the wheel).

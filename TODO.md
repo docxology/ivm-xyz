@@ -8,7 +8,7 @@ Canonical backlog. One line + path(s) per item. Append new items; mark done item
 - [x] (2026-08-31) Add version badge (was absent): README now shows 0.2.0, matching `pyproject.toml`. (README.md, pyproject.toml)
 - [x] (2026-08-31) Fix stale coverage claim: badge says "99%" without provenance; CI floor is 95% (`.github/workflows/ci.yml:41`). Replaced with floor + verification command. (README.md)
 - [x] (2026-08-31) `docs/TESTING_SUMMARY.md` hard-coded per-module test counts (7/8/7...) vs live count 111 passed / 1 skipped — superseded those numbers with a dated, command-verified snapshot. (docs/TESTING_SUMMARY.md)
-- [ ] `setup.py` duplicates install requirements from `pyproject.toml` — drift risk flagged in root AGENTS.md; consider a test/guard asserting parity. (setup.py, pyproject.toml)
+- [x] (2026-10-24) Resolved by removing redundant `setup.py` — `pyproject.toml` is the single source of packaging truth; updated CI black scope, scripts/AGENTS.md, docs/STRUCTURE.md. (pyproject.toml, .github/workflows/ci.yml)
 
 ## Medium
 
