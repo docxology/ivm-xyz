@@ -74,7 +74,7 @@ python_classes = ["Test*"]
 python_functions = ["test_*"]
 
 # python_version is intentionally left unpinned: pinning it to 3.10 makes mypy
-# reject numpy's PEP 695 stubs. Our own code is 3.10-safe (every module uses
+# reject numpy's PEP 695 stubs. Our own code is 3.11-safe (every module uses
 # `from __future__ import annotations` and typing.{Tuple,Dict,List}).
 [tool.mypy]
 files = ["ivm_xyz"]
