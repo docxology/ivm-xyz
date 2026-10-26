@@ -15,4 +15,4 @@
 
 ## Invariants
 
-- `Vector` / `Qvector` operations are numpy-backed where applicable; lengths and conversions should round-trip within documented precision (see tests for `isclose` / `AlmostEqual` usage).
+- `Vector` / `Qvector` operations use the standard library only (`math`, `collections`; `numpy` appears solely in `ivm_xyz.visualization`); lengths and conversions should round-trip within documented precision (see tests for `isclose` / `AlmostEqual` usage).

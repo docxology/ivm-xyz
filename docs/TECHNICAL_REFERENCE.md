@@ -228,7 +228,7 @@ z = r × cos(phi)
 1. **Reuse Vector Objects**: Create once, use multiple times
 2. **Batch Operations**: Use `add_polyhedron()` for multiple animations
 3. **Parallel Processing**: Animation automatically uses parallel processing
-4. **Edge Counting**: Use closed-form functions (`a007531`, etc.) for better performance
+4. **Edge Counting**: Use the closed-form functions in `ivm_xyz.polyhedra.edge_counting` (`a007531`, `a035006`, `a300758`) for better performance; `ivm_xyz.polyhedra` re-exports only the iterative `*_edges` helpers
 
 ---
 
@@ -291,12 +291,12 @@ z = r × cos(phi)
 ### Data Structures
 
 **Vector**:
-- Uses `namedtuple` for coordinates: `xyz_vector(x, y, z)`
+- Uses `namedtuple` for coordinates: `XYZ(x, y, z)`
 - Properties provide convenient access: `v.x`, `v.y`, `v.z`
 - Immutable design (operations return new instances)
 
 **Qvector**:
-- Uses `namedtuple` for coordinates: `ivm_vector(a, b, c, d)`
+- Uses `namedtuple` for coordinates: `IVM(a, b, c, d)`
 - Properties provide convenient access: `q.a`, `q.b`, `q.c`, `q.d`
 - Automatic normalization on initialization
 
@@ -360,7 +360,7 @@ z = r × cos(phi)
 
 ### Test Statistics
 
-- **Total Tests**: 83+
+- **Total Tests**: 112 collected (111 passed / 1 skipped, 2026-08-31 snapshot; see [TESTING_SUMMARY.md](TESTING_SUMMARY.md))
 - **Coverage**: All public methods and classes
 - **Edge Cases**: Zero vectors, degenerate shapes, boundary conditions
 - **Precision Tests**: Round-trip conversions, mathematical accuracy
@@ -369,7 +369,7 @@ z = r × cos(phi)
 
 ## References
 
-- **Euler Volume Formula**: http://www.grunch.net/synergetics/quadvols.html
+- **Euler Volume Formula**: https://www.grunch.net/synergetics/quadvols.html
 - **Gerald de Jong**: Modifications to Euler formula
 - **OEIS Sequences**: A007531, A035006, A300758, A069074
 - **Buckminster Fuller**: "Synergetics: Explorations in the Geometry of Thinking"

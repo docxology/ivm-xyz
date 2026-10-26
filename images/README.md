@@ -4,6 +4,6 @@
 
 **Git note:** [../.gitignore](../.gitignore) still ignores `images/*.png` and `images/*.gif` for projects that write here. The [outputs/](../outputs/) tree is the canonical default for new runs.
 
-Markdown in this directory **is** tracked; binary artifacts generally are not.
+Markdown in this directory **is** tracked. New binaries written here are ignored by `.gitignore`; the five `.gif` renders kept from v0.1 (`cube`, `dodecahedron`, `octahedron`, `pyramid`, `tetrahedron`) remain tracked for reference.
 
 See [AGENTS.md](AGENTS.md).

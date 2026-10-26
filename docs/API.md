@@ -34,7 +34,7 @@ Complete technical API documentation for all classes, methods, and functions in 
 
 ##### Attributes
 
-- **`xyz`** (`namedtuple`): Named tuple of type `xyz_vector` containing (x, y, z) coordinates
+- **`xyz`** (`namedtuple`): Named tuple of type `XYZ` containing (x, y, z) coordinates
 - **`x`** (`float`, property): X coordinate
 - **`y`** (`float`, property): Y coordinate
 - **`z`** (`float`, property): Z coordinate
@@ -61,12 +61,12 @@ v3 = Vector((0.5, 1.5, 2.5))
 
 String representation of the vector.
 
-**Returns**: `str` - Representation showing xyz_vector named tuple
+**Returns**: `str` - Representation showing the `XYZ` named tuple
 
 **Example**:
 ```python
 v = Vector((1, 2, 3))
-print(v)  # xyz_vector(x=1.0, y=2.0, z=3.0)
+print(v)  # XYZ(x=1.0, y=2.0, z=3.0)
 ```
 
 ###### `__mul__(scalar)`
@@ -392,7 +392,7 @@ q = v.quadray()  # Returns Qvector
 
 ##### Attributes
 
-- **`coords`** (`namedtuple`): Named tuple of type `ivm_vector` containing (a, b, c, d) coordinates
+- **`coords`** (`namedtuple`): Named tuple of type `IVM` containing (a, b, c, d) coordinates
 - **`a`** (`float`, property): First quadray coordinate
 - **`b`** (`float`, property): Second quadray coordinate
 - **`c`** (`float`, property): Third quadray coordinate
@@ -1089,7 +1089,7 @@ Convert a Vector object to a Qvector object.
 
 **Example**:
 ```python
-from ivm_xyz.conversion import vector_to_qvector
+from ivm_xyz.conversion.converters import vector_to_qvector
 from ivm_xyz.core.vectors import Vector
 
 v = Vector((1, 2, 3))
@@ -1113,7 +1113,7 @@ Convert a Qvector object to a Vector object.
 
 **Example**:
 ```python
-from ivm_xyz.conversion import qvector_to_vector
+from ivm_xyz.conversion.converters import qvector_to_vector
 from ivm_xyz.core.vectors import Qvector
 
 q = Qvector((1, 0, 0, 0))
@@ -1779,8 +1779,8 @@ l = length(v1)
 ```python
 from ivm_xyz.core.vectors import Svector
 
-# Spherical vector (initialized from spherical coordinates)
-sv = Svector((r, phi, theta))
+# Constructed from an XYZ triple; repr/spherical() report (r, phi, theta) in degrees
+sv = Svector((1.0, 45.0, 30.0))  # -> "Svector (54.09…, 56.31…, 88.72…)"
 ```
 
 ---
@@ -1832,6 +1832,6 @@ sv = Svector((r, phi, theta))
 ## References
 
 - Buckminster Fuller, R. "Synergetics: Explorations in the Geometry of Thinking"
-- Euler Volume Formula: http://www.grunch.net/synergetics/quadvols.html
+- Euler Volume Formula: https://www.grunch.net/synergetics/quadvols.html
 - Gerald de Jong's modifications to Euler formula
 - OEIS sequences: A007531, A035006, A300758, A069074

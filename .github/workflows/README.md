@@ -1,3 +1,4 @@
 # workflows/
 
-GitHub Actions workflows. Currently only `ci.yml`.
+GitHub Actions workflows: `ci.yml` (tests, lint/typecheck, dependency audit),
+`codeql.yml` (CodeQL analysis), `dependency-review.yml` (PR dependency review).

@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Full type hints across the package; `mypy` runs clean and the shipped
   `py.typed` marker is now meaningful.
-- GitHub Actions CI: test matrix on Python 3.10/3.11/3.12 with a 95% coverage
+- GitHub Actions CI: test matrix on Python 3.11/3.12/3.13 with a 95% coverage
   floor, plus a lint/typecheck job (`black`, `flake8`, `mypy`).
 - Dependabot configuration for weekly `uv` and `github-actions` updates.
 - Pre-commit configuration (`black`, `flake8`, `mypy`, hygiene hooks).
@@ -47,6 +47,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Documentation now matches the code: `vector_to_qvector` / `qvector_to_vector`
+  examples import from `ivm_xyz.conversion.converters` (the package `__init__`
+  exports `xyz_to_ivm` / `ivm_to_xyz` only), the coordinate tuples are named
+  `XYZ` / `IVM` (not `xyz_vector` / `ivm_vector`), `Svector` is described as
+  wrapping an XYZ triple, and the `.github/` notes list all three workflows.
+- Stale counts and claims replaced with the dated snapshot convention
+  (112 collected / 111 passed / 1 skipped): per-file test counts, "Edge Counting
+  Functions: 10", "Vector class: 19 methods", `working/` tracking status, and
+  the CI test matrix in the `[Unreleased]` notes (3.11/3.12/3.13).
+- `references` links to the Euler volume write-up now use `https://` and the
+  one dead in-tree anchor (`docs/AGENTS.md#visualization-module`) is repaired.
+- `uv.lock` refreshed to current compatible patch/minor releases
+  (`numpy` 2.5.4, `matplotlib` 3.11.2, `mypy` 2.4.0, `flake8` 7.4.1,
+  `coverage` 7.17.0, `fonttools` 4.67.0, `imageio` 2.38.1, …).
 - `PolyhedronPlotter.animate_polyhedron` no longer crashes on matplotlib ≥ 3.10:
   the removed `FigureCanvas.tostring_rgb` API is replaced with `buffer_rgba`.
 - Worker-thread exceptions in `animate_polyhedron` are now surfaced instead of
@@ -62,6 +76,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Stale `working/setup.py`: a v0.1.0 packaging shim duplicating metadata that
+  `pyproject.toml` already owns (the root copy was removed earlier); the tracked
+  `working/forked_from_SoT/` reference forks are unaffected.
 - Dead/broken `suppress` branch in `Polyhedron.translate` (it referenced a
   `_suppress` method that exists nowhere and would raise if reached).
 - Redundant `setup.py`: `pyproject.toml` is the single source of packaging

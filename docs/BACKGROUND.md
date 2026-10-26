@@ -31,7 +31,7 @@ Key features:
 - **High-Precision Calculations**: Utilizes high-precision calculations to ensure accuracy, crucial for scientific and engineering applications.
 - **Easy Integration**: Provides an easy-to-use interface for seamless integration into existing projects with minimal setup.
 - **Comprehensive Documentation**: Each function and module come with comprehensive documentation, catering to both beginners and experienced users.
-- **Extensive Test Suite**: Guarantees reliability and stability across different platforms and Python versions with 83+ tests covering all functionality, including advanced vector operations, rotations, and coordinate transformations.
+- **Extensive Test Suite**: Guarantees reliability and stability across different platforms and Python versions with 112 collected tests (111 passed / 1 skipped, 2026-08-31 snapshot; see [TESTING_SUMMARY.md](TESTING_SUMMARY.md)) covering all functionality, including advanced vector operations, rotations, and coordinate transformations.
 
 In summary, the IVM-XYZ conversion package stands as a powerful instrument that forges a link between the traditional Cartesian spaces and the vibrant, multi-dimensional realm of Synergetics and tetrahedral coordination geometries. Inspired by Buckminster Fuller's visionary contributions, it introduces a novel perspective on spatial geometry, encouraging exploration and innovation across a wide range of disciplines.
 

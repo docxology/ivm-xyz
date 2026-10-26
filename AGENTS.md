@@ -16,7 +16,7 @@ Use **[docs/AGENTS.md](docs/AGENTS.md)** for module layout, utility scripts, wor
 | [archive/](archive/) | Legacy reference only; not part of the published API |
 | [outputs/](outputs/) | Default generated tree: `plots/`, `logs/`, `reports/` (v0.2+; gitignored except [outputs/README.md](outputs/README.md)) |
 | [images/](images/) | Optional if you set `output_folder="images"`; v0.1 default. `*.png` / `*.gif` gitignored when written here |
-| `working/` | Local scratch (see [.gitignore](.gitignore)); not in version control |
+| `working/` | Local scratch (gitignored); only the reference forks in `working/forked_from_SoT/` are tracked |
 
 ## Tests
 
@@ -55,6 +55,6 @@ Visualization and any import of `ivm_xyz.visualization` require **matplotlib** (
 
 - `docs/AGENTS.md` is the long-form agent guide; this root file is the short index and entry point for tools.
 - `ivm_xyz.visualization` loads **matplotlib** at import time; tests gate on `tests/_support/optional_deps.HAS_MATPLOTLIB`.
-- `working/` is fully gitignored; versioned per-folder README/AGENTS live only under tracked trees unless ignore rules change.
+- `working/` is gitignored for new files, but five reference forks under `working/forked_from_SoT/` are tracked in the index (outside the lint/format surface, like `archive/`).
 - `scripts/test_runner.py` resolves the repository root, switches cwd there for discovery, and writes logs and reports under `outputs/logs/` and `outputs/reports/`.
 - `PolyhedronPlotter` and library defaults use **`outputs/plots/`**; **`images/`** is only for explicit legacy overrides.

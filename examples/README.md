@@ -5,7 +5,7 @@ Runnable scripts demonstrating the public API. Run from the **repository root** 
 | Entry | What it is |
 |-------|------------|
 | [basic_usage.py](basic_usage.py) | One file covering vectors, conversion, `make_tet` / `make_tri`, and polyhedra (used by integration tests) |
-| [visualization_examples.py](visualization_examples.py) | `PolyhedronPlotter` to `images/` — requires **`[visualization]`** (matplotlib, imageio for GIF) |
+| [visualization_examples.py](visualization_examples.py) | `PolyhedronPlotter` to the default `outputs/plots/` — requires **`[visualization]`** (matplotlib, imageio for GIF) |
 | [orchestrators/](orchestrators/) | **Thin orchestrator scripts** — one small workflow per file ([index](orchestrators/README.md)) |
 
 ## Commands

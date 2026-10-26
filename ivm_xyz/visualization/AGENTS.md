@@ -2,7 +2,7 @@
 
 ## API
 
-- [`PolyhedronPlotter`](plotter.py) — `__init__.py` sole export; matplotlib imported at module load in `plotter.py`.
+- [`PolyhedronPlotter`](plotter.py) — exported by `__init__.py` alongside `DEFAULT_PLOT_OUTPUT_DIR`; matplotlib imported at module load in `plotter.py`.
 
 ## Tests
 

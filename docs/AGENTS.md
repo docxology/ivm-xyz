@@ -154,13 +154,14 @@ translated = cube.translate(Qvector((1, 0, 0, 0)))
 All modules have corresponding test files in `tests/`:
 
 **Unit Tests:**
-- `test_vectors.py`: Basic Vector and Qvector tests (13 tests)
+- `test_vectors.py`: Basic Vector and Qvector tests (14 tests)
 - `test_vector_advanced.py`: Advanced Vector methods - rotations, spherical coordinates, unit vectors, norm0, Svector (5 tests)
-- `test_tetrahedron.py`: Tetrahedron calculation tests (11 tests)
+- `test_tetrahedron.py`: Tetrahedron calculation tests (10 tests)
 - `test_triangle.py`: Triangle calculation tests (4 tests)
 - `test_conversion.py`: Coordinate conversion tests (8 tests)
-- `test_polyhedra.py`: Polyhedron tests (11 tests)
-- `test_visualization.py`: Basic visualization tests (3 tests)
+- `test_polyhedra.py`: Polyhedron tests (12 tests)
+- `test_visualization.py`: Basic visualization tests (4 tests)
+- `test_coverage_gaps.py`: Coverage-gap tests (parametrized; raises line coverage to ~99%)
 
 **Comprehensive Tests:**
 - `test_functional_comprehensive.py`: Comprehensive functional verification
@@ -302,4 +303,4 @@ The package implements:
 - **Examples**: `examples/` - Usage examples
 - **Documentation**: `docs/` - Documentation files
 - **Archive**: `archive/` - Legacy files (reference only, not imported)
-- **Working**: `working/` - Development workspace
+- **Working**: `working/` - Gitignored development workspace (`forked_from_SoT/` reference forks are tracked, not packaged or linted)

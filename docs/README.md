@@ -15,6 +15,7 @@ Project documentation: API, modules, background, structure, and agent-oriented w
 | [BACKGROUND.md](BACKGROUND.md) | IVM, Synergetics, and volume/area at a high level |
 | [TECHNICAL_REFERENCE.md](TECHNICAL_REFERENCE.md) | Algorithms, precision, and implementation notes |
 | [.cursorrules](.cursorrules) | House style for contributors and tools (if present) |
+| [manuscript/MANUSCRIPT_STATUS.md](manuscript/MANUSCRIPT_STATUS.md) | Why no publication-target manuscript applies to this repo |
 
 **Reading order (typical):** root [../README.md](../README.md) → this index or [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) → [MODULES.md](MODULES.md) or [API.md](API.md) as needed; [BACKGROUND.md](BACKGROUND.md) when the math (IVM vs XYZ, `S3`) needs context.
 

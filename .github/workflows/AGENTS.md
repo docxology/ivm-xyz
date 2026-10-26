@@ -1,4 +1,5 @@
 # workflows/ — Agent Notes
 
-Single workflow: `ci.yml` (~1.7 KB, verified 2026-08-29). The root README CI
-badge links here. Edit cautiously; keep job names in sync with the badge URL.
+Three workflows: `ci.yml` (~2.4 KB — the root README CI badge links here),
+`codeql.yml`, and `dependency-review.yml`. Edit cautiously; keep job names in
+sync with the badge URL.

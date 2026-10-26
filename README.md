@@ -57,7 +57,7 @@ pip install -r requirements.txt
 - **[AGENTS.md](AGENTS.md)** — Short index for tools and contributors (full detail: [docs/AGENTS.md](docs/AGENTS.md)).
 - **[TODO.md](TODO.md)** — Canonical backlog: current next actions and open items (single source of truth for "what to do next").
 - **[outputs/](outputs/)** — Default generated plots, logs, and reports (v0.2+; see [outputs/README.md](outputs/README.md)). **`images/`** is optional for explicit `output_folder="images"` (legacy v0.1 default).
-- **`working/`** is listed in `.gitignore` for local scratch work; it is not part of the published tree.
+- **`working/`** is listed in `.gitignore` for local scratch work; it is not part of the published tree (the only tracked entries are the reference forks in `working/forked_from_SoT/`, which are not packaged or linted).
 
 ## Quick Start
 

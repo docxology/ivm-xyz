@@ -38,7 +38,7 @@ Complete guide to all documentation in the IVM-XYZ package.
 - Technical notes
 
 **Key Sections**:
-- Vector class (all 20+ methods)
+- Vector class (all 19 methods)
 - Qvector class (all methods)
 - Svector class
 - Tetrahedron class
@@ -103,7 +103,6 @@ Complete guide to all documentation in the IVM-XYZ package.
 - Module responsibilities
 - Import structure
 - Test organization
-- Statistics
 
 #### [TESTING_SUMMARY.md](TESTING_SUMMARY.md)
 **Purpose**: Testing overview and results
@@ -130,7 +129,7 @@ Complete guide to all documentation in the IVM-XYZ package.
 
 All methods and classes are fully documented:
 
-- ✅ **Vector Class**: 20+ methods documented with signatures, parameters, examples
+- ✅ **Vector Class**: 19 methods documented with signatures, parameters, examples
 - ✅ **Qvector Class**: All methods documented
 - ✅ **Svector Class**: Documented with inheritance details
 - ✅ **Tetrahedron Class**: All methods and internal calculations documented
@@ -139,7 +138,7 @@ All methods and classes are fully documented:
 - ✅ **Polyhedra Classes**: All 5 polyhedra documented
 - ✅ **Polyhedron Base Class**: All methods documented
 - ✅ **Edge Class**: Documented
-- ✅ **Edge Counting Functions**: All 8 functions documented
+- ✅ **Edge Counting Functions**: All 10 functions documented
 - ✅ **Visualization Class**: All methods documented
 - ✅ **Module-Level Functions**: All convenience functions documented
 
@@ -157,12 +156,11 @@ All methods and classes are fully documented:
 
 ### Test Coverage
 
-- ✅ **83+ tests** covering all functionality
-- ✅ **11 test files** with comprehensive coverage
+- ✅ **12 test modules** covering all functionality (111 passed / 1 skipped on 2026-08-31; re-run `uv run pytest tests/ -q` for current counts)
 - ✅ All methods tested
 - ✅ Edge cases tested
 - ✅ Integration tests
-- ✅ Visualization tests
+- ✅ Visualization tests (skipped when `matplotlib` is absent)
 
 ## Finding Documentation
 
@@ -191,7 +189,7 @@ All methods and classes are fully documented:
 **Visualization**:
 - API Reference: [API.md](API.md#visualization-module)
 - Module Details: [MODULES.md](MODULES.md#plotterpy)
-- Examples: [AGENTS.md](AGENTS.md#visualization-module)
+- Examples: [AGENTS.md](AGENTS.md#visualization-module-ivm_xyzvisualization)
 
 ### By Use Case
 
@@ -285,4 +283,4 @@ See: [API.md](API.md#polyhedronplotter-class), [STRUCTURE.md](STRUCTURE.md), [..
 
 **Last Updated**: Documentation comprehensively reviewed and expanded
 **Status**: ✅ All methods, classes, and functions fully documented
-**Test Coverage**: 83+ tests, all passing
+**Test Coverage**: 12 test modules; `uv run pytest tests/ -q` is authoritative for current counts

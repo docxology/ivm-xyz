@@ -1,6 +1,6 @@
 # Thin orchestrator examples
 
-Ten small scripts (numpy only) plus one optional matplotlib demo: each file is a single `main()` workflow, runnable from the **repository root**:
+Ten small scripts (stdlib + `ivm_xyz` only) plus one optional matplotlib demo: each file is a single `main()` workflow, runnable from the **repository root**:
 
 ```bash
 uv run python examples/orchestrators/<script>.py

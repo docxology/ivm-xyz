@@ -16,7 +16,7 @@ ivm-xyz/
 ├── archive/                 # Legacy reference only (not imported by ivm_xyz)
 ├── outputs/                 # Default generated logs / reports / plots (see outputs/README.md)
 ├── images/                  # Optional legacy path if output_folder="images" (v0.1)
-├── working/                 # Local scratch — entire tree gitignored (not in the index)
+├── working/                 # Local scratch — gitignored; forked_from_SoT/ reference files are tracked
 ├── README.md
 ├── AGENTS.md                # Short index; full agent doc is docs/AGENTS.md
 ├── pyproject.toml
@@ -98,4 +98,4 @@ Visualization tests are **skipped** when `matplotlib` is not installed.
 - **archive/**: Old scripts; not wired into the package
 - **outputs/**: Default `outputs/plots`, `outputs/logs`, `outputs/reports` (see [outputs/README.md](../outputs/README.md))
 - **images/**: Optional explicit path; v0.1 default was here
-- **working/**: Not versioned; use only for local experiments (documented in root AGENTS / README)
+- **working/**: Gitignored local experiments (documented in root AGENTS / README); the `forked_from_SoT/` reference forks are the only tracked entries

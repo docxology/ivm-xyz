@@ -338,7 +338,11 @@ class Qvector:
 
 
 class Svector(Vector):
-    """Subclass of Vector that takes spherical coordinate arguments."""
+    """Vector subclass whose ``repr`` shows spherical coordinates.
+
+    Constructed from an XYZ triple like ``Vector``; ``repr``/``spherical()``
+    report ``(r, phi, theta)`` (degrees).
+    """
 
     def __init__(self, arg: Iterable[float]) -> None:
         # if returning from Vector calc method, spherical is true

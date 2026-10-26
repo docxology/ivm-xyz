@@ -138,8 +138,8 @@ Subclass of Vector that takes spherical coordinate arguments.
 ```python
 from ivm_xyz.core.vectors import Svector
 
-# From spherical coordinates
-sv = Svector((1.0, 45.0, 30.0))  # r=1, phi=45°, theta=30°
+# Constructed from an XYZ triple; repr shows spherical (r, phi, theta) in degrees
+sv = Svector((1.0, 45.0, 30.0))  # -> Svector (54.09…, 56.31…, 88.72…)
 
 # From regular vector (converts to spherical first)
 v = Vector((1, 0, 0))
@@ -461,7 +461,7 @@ Convert a Vector object to a Qvector object.
 
 **Example**:
 ```python
-from ivm_xyz.conversion import vector_to_qvector
+from ivm_xyz.conversion.converters import vector_to_qvector
 from ivm_xyz.core.vectors import Vector
 
 v = Vector((1, 2, 3))
@@ -480,7 +480,7 @@ Convert a Qvector object to a Vector object.
 
 **Example**:
 ```python
-from ivm_xyz.conversion import qvector_to_vector
+from ivm_xyz.conversion.converters import qvector_to_vector
 from ivm_xyz.core.vectors import Qvector
 
 q = Qvector((1, 0, 0, 0))
@@ -946,6 +946,6 @@ All polyhedra follow R. Buckminster Fuller's Concentric Hierarchy:
 ## References
 
 - Buckminster Fuller, R. "Synergetics: Explorations in the Geometry of Thinking"
-- Euler Volume Formula: http://www.grunch.net/synergetics/quadvols.html
+- Euler Volume Formula: https://www.grunch.net/synergetics/quadvols.html
 - Gerald de Jong's modifications to Euler formula
 - OEIS sequences: A007531, A035006, A300758, A069074

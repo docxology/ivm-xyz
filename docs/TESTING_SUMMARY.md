@@ -21,7 +21,7 @@ The package is covered by `unittest` modules under `tests/` (see file list below
 
 ## Test execution snapshot
 
-Run `uv run pytest tests/ -q` or `uv run python -m unittest discover tests` for current counts. With **all** extras, expect on the order of **80+** collected tests; without **matplotlib**, visualization cases are **skipped** (so totals differ).
+Run `uv run pytest tests/ -q` or `uv run python -m unittest discover tests` for current counts. With **all** extras the suite collects **112** tests (111 passed / 1 skipped, 2026-08-31 snapshot below); without **matplotlib**, visualization cases are **skipped** (so totals differ).
 
 **Verified 2026-08-31** (`uv run pytest tests/ -q`, exit 0): **111 passed, 1 skipped**. The per-file counts below are illustrative of what each file covers, not a live tally; the command above is authoritative.
 
@@ -87,13 +87,14 @@ The sections below describe **what** is covered, not a frozen historical run.
 All test files are located in the `tests/` directory:
 
 **Unit Tests:**
-- ✅ `tests/test_vectors.py` - 13 tests
-- ✅ `tests/test_tetrahedron.py` - 11 tests
+- ✅ `tests/test_vectors.py` - 14 tests
+- ✅ `tests/test_tetrahedron.py` - 10 tests
 - ✅ `tests/test_triangle.py` - 4 tests
 - ✅ `tests/test_conversion.py` - 8 tests
-- ✅ `tests/test_polyhedra.py` - 11 tests
-- ✅ `tests/test_visualization.py` - 3 tests
+- ✅ `tests/test_polyhedra.py` - 12 tests
+- ✅ `tests/test_visualization.py` - 4 tests
 - ✅ `tests/test_vector_advanced.py` - 5 tests (rotations, spherical, unit, norm0, Svector)
+- ✅ `tests/test_coverage_gaps.py` - 19 tests (parametrized)
 
 **Comprehensive Tests:**
 - ✅ `tests/test_functional_comprehensive.py` - 7 tests
@@ -101,7 +102,7 @@ All test files are located in the `tests/` directory:
 - ✅ `tests/test_integration_comprehensive.py` - 5 tests
 - ✅ `tests/test_visualization_comprehensive.py` - 7 tests
 
-**Total**: 11 test files; live count is 111 passed / 1 skipped as of 2026-08-31 (see snapshot above; re-run the command for current numbers).
+**Total**: 12 test files; live count is 111 passed / 1 skipped as of 2026-08-31 (see snapshot above; re-run the command for current numbers).
 
 ## Key Verifications
 
