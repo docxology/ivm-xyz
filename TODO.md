@@ -20,7 +20,11 @@ Canonical backlog. One line + path(s) per item. Append new items; mark done item
 - [ ] (2026-10-25) Pick one contract for `.cursor/hooks/state/*.json`: both files are tracked but `.cursor/hooks/state/README.md` calls them gitignored and `AGENTS.md` says "never commit". Either add an ignore rule + `git rm --cached`, or state they are tracked. (.cursor/hooks/state/, .gitignore)
 - [ ] (2026-10-25) `docs/STRUCTURE.md` and `docs/DOCUMENTATION_INDEX.md` still describe `Svector` in the "public classes" list while it is not exported from `ivm_xyz` or `ivm_xyz.core.__all__`; decide whether to export it or mark it internal. (docs/STRUCTURE.md, docs/DOCUMENTATION_INDEX.md, ivm_xyz/core/vectors.py)
 
-(Previously no Medium items outstanding; both entries above were found in the 2026-10-25 pass.)
+(Previously no Medium items outstanding; the entries above were found in the 2026-10-25 pass.)
+
+## Minor (continued 2)
+
+- [ ] (2026-10-25) Pre-commit hook pins still trail the lock: `flake8` 7.3.0 (matches `uv.lock`), `mypy` mirror v1.18.2 vs locked mypy 2.3.0, `pre-commit-hooks` v5.0.0. `black` was aligned to 26.10.1 (same version CI formats with). Run `uv run pre-commit autoupdate` once a machine can build the hook envs. (.pre-commit-config.yaml)
 
 ## Major
 
