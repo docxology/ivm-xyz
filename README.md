@@ -10,6 +10,8 @@
 
 A powerful Python package for computational geometry, providing tools for working with both XYZ (Cartesian) and IVM (Isotropic Vector Matrix / Quadray) coordinate systems. Inspired by R. Buckminster Fuller's Synergetics.
 
+![IVM-XYZ computational geometry architecture: Cartesian Vector and Quadray Qvector primitives, bidirectional XYZ-IVM conversion, exact synergetic tetravolumes, Concentric Hierarchy solids, and 3D plotting](docs/assets/overview.svg)
+
 ## Features
 
 - **Robust Coordinate Conversion**: Precise and efficient transformations between XYZ and IVM coordinate systems

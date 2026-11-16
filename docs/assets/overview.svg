@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="445" viewBox="0 0 960 445" role="img" aria-labelledby="t d">
+<title id="t">IVM-XYZ Computational Geometry Package Architecture</title>
+<desc id="d">Bidirectional conversion between XYZ Cartesian and IVM Quadray coordinates, exact synergetic tetravolumes, Concentric Hierarchy, and 3D plotting.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 1.5L9 5L0 8.5z" fill="#64748b"/></marker></defs>
+<rect x="0" y="0" width="960" height="445" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+<rect x="20" y="18" width="920" height="64" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" data-card="1"/>
+<rect x="20" y="18" width="6" height="64" rx="3" fill="#2563eb"/>
+<text x="38" y="45" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#0f172a">IVM-XYZ — Cartesian &amp; Synergetic Quadray Geometry</text>
+<text x="38" y="67" font-family="system-ui,sans-serif" font-size="12" fill="#475569">Exact XYZ &lt;-&gt; IVM (Quadray) coordinate transforms, tetravolumes &amp; Fuller&#x27;s Concentric Hierarchy</text>
+<rect x="762" y="27" width="164" height="24" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="1"/>
+<text x="844.0" y="43" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11.5" font-weight="600" fill="#1e3a8a">v0.2.0 · &gt;=95% Cov</text>
+<rect x="20" y="100" width="218" height="148" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-card="1"/>
+<rect x="20" y="100" width="218" height="5" rx="2.5" fill="#2563eb"/>
+<rect x="32" y="110" width="48" height="17" rx="8.5" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="56.0" y="122" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" font-weight="600" fill="#1e40af">CORE</text>
+<text x="32" y="143" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#1e40af">1. Core Primitives</text>
+<text x="32" y="161" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">ivm_xyz/core/vectors.py</text>
+<text x="32" y="179" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">Vector (x, y, z) in R^3</text>
+<text x="32" y="197" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">Qvector (a, b, c, d) &gt;= 0</text>
+<text x="32" y="215" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">constants.py (S, E, sqrt2)</text>
+<text x="32" y="233" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Canonical min=0 form</text>
+<line x1="238" y1="174" x2="254" y2="174" stroke="#64748b" stroke-width="1.8" marker-end="url(#arr)"/>
+<rect x="256" y="100" width="218" height="148" rx="9" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5" data-card="1"/>
+<rect x="256" y="100" width="218" height="5" rx="2.5" fill="#0d9488"/>
+<rect x="268" y="110" width="67" height="17" rx="8.5" fill="#ffffff" stroke="#0d9488" stroke-width="0.9"/>
+<text x="301.5" y="122" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" font-weight="600" fill="#115e59">CONVERT</text>
+<text x="268" y="143" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#115e59">2. Exact Conversion</text>
+<text x="268" y="161" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">conversion/converters.py</text>
+<text x="268" y="179" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">xyz_to_ivm &amp; ivm_to_xyz</text>
+<text x="268" y="197" font-family="system-ui,sans-serif" font-size="12" fill="#334155">4 tetrahedral basis rays</text>
+<text x="268" y="215" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Round-trip precision</text>
+<text x="268" y="233" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Vectorized NumPy arrays</text>
+<line x1="474" y1="174" x2="490" y2="174" stroke="#64748b" stroke-width="1.8" marker-end="url(#arr)"/>
+<rect x="492" y="100" width="218" height="148" rx="9" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" data-card="1"/>
+<rect x="492" y="100" width="218" height="5" rx="2.5" fill="#d97706"/>
+<rect x="504" y="110" width="67" height="17" rx="8.5" fill="#ffffff" stroke="#d97706" stroke-width="0.9"/>
+<text x="537.5" y="122" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" font-weight="600" fill="#92400e">METRICS</text>
+<text x="504" y="143" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#92400e">3. Volume &amp; Area</text>
+<text x="504" y="161" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">core/tetrahedron.py</text>
+<text x="504" y="179" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">core/triangle.py</text>
+<text x="504" y="197" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Unit IVM tetravolumes</text>
+<text x="504" y="215" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Cayley-Menger &amp; quadray</text>
+<text x="504" y="233" font-family="system-ui,sans-serif" font-size="12" fill="#334155">determinant formulations</text>
+<line x1="710" y1="174" x2="726" y2="174" stroke="#64748b" stroke-width="1.8" marker-end="url(#arr)"/>
+<rect x="728" y="100" width="212" height="148" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5" data-card="1"/>
+<rect x="728" y="100" width="212" height="5" rx="2.5" fill="#7c3aed"/>
+<rect x="740" y="110" width="67" height="17" rx="8.5" fill="#ffffff" stroke="#7c3aed" stroke-width="0.9"/>
+<text x="773.5" y="122" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" font-weight="600" fill="#5b21b6">PLOTTER</text>
+<text x="740" y="143" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#5b21b6">4. 3D Visualization</text>
+<text x="740" y="161" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">visualization/plotter.py</text>
+<text x="740" y="179" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">PolyhedronPlotter class</text>
+<text x="740" y="197" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Matplotlib 3D wireframes</text>
+<text x="740" y="215" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Dual axes &amp; GIF export</text>
+<text x="740" y="233" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Edge-counting utilities</text>
+<text x="24" y="274" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#1e40af">FULLER&#x27;S CONCENTRIC HIERARCHY IN UNIT TETRAVOLUMES (ivm_xyz/polyhedra/)</text>
+<rect x="20" y="286" width="172" height="94" rx="9" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" data-card="1"/>
+<rect x="20" y="286" width="172" height="5" rx="2.5" fill="#16a34a"/>
+<text x="32" y="311" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#166534">Tetrahedron</text>
+<text x="32" y="332" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">Vol = 1 (IVM)</text>
+<text x="32" y="350" font-family="system-ui,sans-serif" font-size="12" fill="#334155">4 vertices · 6 edges</text>
+<rect x="207" y="286" width="172" height="94" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-card="1"/>
+<rect x="207" y="286" width="172" height="5" rx="2.5" fill="#2563eb"/>
+<text x="219" y="311" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#1e40af">Cube</text>
+<text x="219" y="332" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">Vol = 3 (IVM)</text>
+<text x="219" y="350" font-family="system-ui,sans-serif" font-size="12" fill="#334155">8 vertices · 12 edges</text>
+<rect x="394" y="286" width="172" height="94" rx="9" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5" data-card="1"/>
+<rect x="394" y="286" width="172" height="5" rx="2.5" fill="#0d9488"/>
+<text x="406" y="311" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#115e59">Octahedron</text>
+<text x="406" y="332" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">Vol = 4 (IVM)</text>
+<text x="406" y="350" font-family="system-ui,sans-serif" font-size="12" fill="#334155">6 vertices · 12 edges</text>
+<rect x="581" y="286" width="172" height="94" rx="9" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" data-card="1"/>
+<rect x="581" y="286" width="172" height="5" rx="2.5" fill="#d97706"/>
+<text x="593" y="311" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#92400e">Rhombic Dodec.</text>
+<text x="593" y="332" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">Vol = 6 (IVM)</text>
+<text x="593" y="350" font-family="system-ui,sans-serif" font-size="12" fill="#334155">14 vertices · 24 edges</text>
+<rect x="768" y="286" width="172" height="94" rx="9" fill="#fff1f2" stroke="#e11d48" stroke-width="1.5" data-card="1"/>
+<rect x="768" y="286" width="172" height="5" rx="2.5" fill="#e11d48"/>
+<text x="780" y="311" font-family="system-ui,sans-serif" font-size="13.5" font-weight="700" fill="#9f1239">Cuboctahedron</text>
+<text x="780" y="332" font-family="ui-monospace,monospace" font-size="11.5" fill="#1e293b">Vol = 20 (IVM)</text>
+<text x="780" y="350" font-family="system-ui,sans-serif" font-size="12" fill="#334155">12 vertices · 24 edges</text>
+<rect x="20" y="394" width="920" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1" data-card="1"/>
+<text x="34" y="416.5" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600" fill="#334155">Quality Gates: Python 3.11-3.15 CI · &gt;=95% pytest coverage · strict mypy, black &amp; flake8.</text>
+<text x="926" y="416.5" text-anchor="end" font-family="ui-monospace,monospace" font-size="11.5" fill="#475569">Synergetics Geometry</text>
+</svg>
