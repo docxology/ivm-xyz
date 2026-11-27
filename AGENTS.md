@@ -43,6 +43,8 @@ Visualization and any import of `ivm_xyz.visualization` require **matplotlib** (
 
 [scripts/test_runner.py](scripts/test_runner.py) writes `outputs/logs/test_results.log` and `outputs/reports/test_report.txt`. [scripts/generate_comprehensive_report.py](scripts/generate_comprehensive_report.py) writes `outputs/reports/COMPREHENSIVE_TEST_REPORT.md`. The [outputs/](outputs/) tree is gitignored except [outputs/README.md](outputs/README.md). Set `IVM_XYZ_OUTPUT_ROOT` in examples to relocate generated examples (see [examples/orchestrators/config.py](examples/orchestrators/config.py)). **v0.2.0** changes the default `PolyhedronPlotter` output directory to `outputs/plots/`.
 
+The [manuscript build](docs/manuscript/README.md) writes its readers and validation reports to the ignored root `output/` directory.
+
 ## Learned User Preferences
 
 - Prefer behavioral tests without mocks; optional visualization work should skip or use extras instead of failing at import.
