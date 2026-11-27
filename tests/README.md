@@ -1,10 +1,17 @@
 # `tests/`
 
-`unittest` discovery against this package. Run from the **repository root**:
+Run the full suite from the **repository root** with the `dev` extra. The
+coverage-gap tests import `pytest` during discovery with either runner.
 
 ```bash
-uv run python -m unittest discover tests
-uv run pytest tests/
+uv run --extra dev pytest tests/
+uv run --extra dev python -m unittest discover tests
+```
+
+To run an individual `unittest` module without extras:
+
+```bash
+uv run python -m unittest tests.test_conversion
 ```
 
 - **Optional deps**: `tests/_support/optional_deps.py` — visualization tests **skip** if `matplotlib` is missing.

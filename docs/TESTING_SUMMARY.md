@@ -11,7 +11,7 @@ uv run python -m unittest discover tests
 uv run python scripts/test_runner.py
 ```
 
-- **`uv sync --all-extras`** pulls `numpy`, `dev` (e.g. `pytest`), and **`visualization`** (`matplotlib`, `imageio`) so the full suite can run. With only `numpy` installed, tests that import `ivm_xyz.visualization` are **skipped** (not failed).
+- **`uv sync --all-extras`** pulls `numpy`, `dev` (e.g. `pytest`), and **`visualization`** (`matplotlib`, `imageio`). Full discovery needs `dev`. Without `matplotlib`, the suite skips visualization tests.
 - **`scripts/test_runner.py`** resolves the repository root, `chdir`s there, discovers `tests/` with the correct `top_level_dir`, and writes `outputs/logs/test_results.log` and `outputs/reports/test_report.txt`.
 - **`scripts/generate_comprehensive_report.py`** writes **`outputs/reports/COMPREHENSIVE_TEST_REPORT.md`** (large generated file; gitignored except [outputs/README.md](../outputs/README.md)).
 
@@ -21,7 +21,7 @@ The package is covered by `unittest` modules under `tests/` (see file list below
 
 ## Test execution snapshot
 
-Run `uv run pytest tests/ -q` or `uv run python -m unittest discover tests` for current counts. With **all** extras the suite collects **112** tests (111 passed / 1 skipped, 2026-08-31 snapshot below); without **matplotlib**, visualization cases are **skipped** (so totals differ).
+Run `uv run --extra dev pytest tests/ -q` or `uv run --extra dev python -m unittest discover tests` for current counts. With **all** extras the suite collects **112** tests (111 passed / 1 skipped, 2026-08-31 snapshot below); without **matplotlib**, visualization cases are **skipped** (so totals differ).
 
 **Verified 2026-08-31** (`uv run pytest tests/ -q`, exit 0): **111 passed, 1 skipped**. The per-file counts below are illustrative of what each file covers, not a live tally; the command above is authoritative.
 
