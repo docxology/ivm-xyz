@@ -147,3 +147,6 @@ working/
 # Generated output tree (tracked: outputs/README.md only)
 outputs/**
 !outputs/README.md
+
+# Generated Template manuscript readers and validation reports
+/output/
