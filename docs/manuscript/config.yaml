@@ -1,0 +1,19 @@
+paper:
+  title: "Checking Cartesian and Quadray coordinate conventions in IVM-XYZ"
+  subtitle: "Reproducible round trips and a regular tetrahedron"
+  version: "0.2.0"
+authors:
+  - name: IVM-XYZ Contributors
+publication:
+  github_repository: docxology/ivm-xyz
+  repository_url: https://github.com/docxology/ivm-xyz
+metadata:
+  license: MIT
+  language: en
+render:
+  formats:
+    pdf: true
+    html: true
+    slides: false
+    docx: false
+    epub: false

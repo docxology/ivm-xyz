@@ -7,7 +7,7 @@ Complete guide to all documentation in the IVM-XYZ package.
 ### For Users
 
 - **[README.md](README.md)** — File map for the `docs/` tree (start here for navigation within docs)
-- **[README.md](../README.md)** (repository root) — Quick start and overview
+- **[README.md](package-guide.md)** (repository root) — Quick start and overview
 - **[outputs/README.md](../outputs/README.md)** — Default `outputs/plots|logs|reports` and gitignore policy
 - **[API.md](API.md)** — API reference with methods and signatures
 - **[MODULES.md](MODULES.md)** — Module-by-module documentation
@@ -21,6 +21,12 @@ Complete guide to all documentation in the IVM-XYZ package.
 - **[STRUCTURE.md](STRUCTURE.md)** — Package structure (matches the repository)
 - **[TESTING_SUMMARY.md](TESTING_SUMMARY.md)** — How to run tests; optional `matplotlib` skips
 - **[.cursorrules](.cursorrules)** — Development rules
+
+## Manuscript and release records
+
+- [Reproduce the coordinate and volume manuscript](manuscript/README.md).
+- [Read the release history](releases/CHANGELOG.md).
+- [Follow current maintenance work](roadmap.md).
 
 ## Documentation Files
 
@@ -194,7 +200,7 @@ All methods and classes are fully documented:
 ### By Use Case
 
 **Getting Started**:
-1. Read [README.md](../README.md)
+1. Read [README.md](package-guide.md)
 2. Try examples from [MODULES.md](MODULES.md)
 3. Reference [API.md](API.md) for specific methods
 

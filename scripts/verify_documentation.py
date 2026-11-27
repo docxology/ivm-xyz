@@ -78,20 +78,20 @@ def verify_api_documentation():
     return len(missing_items) == 0
 
 
-def verify_readme_examples():
-    """Verify examples in README work."""
-    logger.info("Verifying README examples...")
+def verify_package_guide_examples():
+    """Verify examples in the package guide work."""
+    logger.info("Verifying package-guide examples...")
 
-    readme_path = Path("README.md")
+    readme_path = Path("docs/package-guide.md")
     if not readme_path.exists():
-        logger.warning("README.md not found")
+        logger.warning("Package guide not found")
         return False
 
     readme_content = readme_path.read_text()
 
     # Check for code blocks
     code_blocks = re.findall(r"```python\n(.*?)```", readme_content, re.DOTALL)
-    logger.info(f"  Found {len(code_blocks)} code examples in README")
+    logger.info(f"  Found {len(code_blocks)} code examples in the package guide")
 
     # Try to verify imports are correct
     import_checks = [
@@ -216,7 +216,7 @@ if __name__ == "__main__":
 
     results = {
         "api_docs": verify_api_documentation(),
-        "readme_examples": verify_readme_examples(),
+        "readme_examples": verify_package_guide_examples(),
         "functions_exist": verify_all_functions_exist(),
         "module_structure": verify_module_structure(),
     }

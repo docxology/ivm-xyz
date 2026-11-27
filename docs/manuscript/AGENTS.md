@@ -1,5 +1,5 @@
-# manuscript/ — Agent Notes
+# Geometry manuscript maintenance
 
-Single file: `MANUSCRIPT_STATUS.md` (updated 2026-08-29) — status tracker for
-manuscript preparation. Do not create manuscript sections without updating that
-status file.
+Keep numbered sections, configuration, and bibliography here.
+Regenerate measurements and plots with the [local recipe](README.md).
+Identify which volume convention each result uses.
