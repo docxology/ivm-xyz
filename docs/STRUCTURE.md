@@ -87,7 +87,7 @@ Visualization tests are **skipped** when `matplotlib` is not installed.
 
 ## Documentation map
 
-- **[README.md](../README.md)**: User-facing overview
+- **[README.md](package-guide.md)**: User-facing overview
 - **[AGENTS.md](../AGENTS.md)**: Repository index for agents
 - **[docs/AGENTS.md](AGENTS.md)**: Full developer / agent guide
 - **[docs/DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)**: Topic index

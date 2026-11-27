@@ -37,7 +37,7 @@ Visualization and any import of `ivm_xyz.visualization` require **matplotlib** (
 
 ## Documentation index
 
-[docs/DOCUMENTATION_INDEX.md](docs/DOCUMENTATION_INDEX.md)
+[Documentation index](docs/DOCUMENTATION_INDEX.md) · [Manuscript](docs/manuscript/README.md)
 
 ## Generated artifacts (local only)
 

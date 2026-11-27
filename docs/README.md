@@ -17,10 +17,10 @@ Project documentation: API, modules, background, structure, and agent-oriented w
 | [.cursorrules](.cursorrules) | House style for contributors and tools (if present) |
 | [manuscript/MANUSCRIPT_STATUS.md](manuscript/MANUSCRIPT_STATUS.md) | Why no publication-target manuscript applies to this repo |
 
-**Reading order (typical):** root [../README.md](../README.md) → this index or [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) → [MODULES.md](MODULES.md) or [API.md](API.md) as needed; [BACKGROUND.md](BACKGROUND.md) when the math (IVM vs XYZ, `S3`) needs context.
+**Reading order (typical):** root [../README.md](package-guide.md) → this index or [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) → [MODULES.md](MODULES.md) or [API.md](API.md) as needed; [BACKGROUND.md](BACKGROUND.md) when the math (IVM vs XYZ, `S3`) needs context.
 
 **Generated (do not hand-edit):** [scripts/generate_comprehensive_report.py](../scripts/generate_comprehensive_report.py) writes outputs/reports/COMPREHENSIVE_TEST_REPORT.md (generated, gitignored) (ignored except the [outputs README](../outputs/README.md)). [scripts/test_runner.py](../scripts/test_runner.py) writes outputs/logs/test_results.log (generated, gitignored) and outputs/reports/test_report.txt (generated, gitignored).
 
 **Examples and orchestrators:** [../examples/AGENTS.md](../examples/AGENTS.md), [../examples/orchestrators/README.md](../examples/orchestrators/README.md); optional env [IVM_XYZ_OUTPUT_ROOT](AGENTS.md) (see [examples/orchestrators/config.py](../examples/orchestrators/config.py)).
 
-Root [../README.md](../README.md) links here for the narrative quick start. See [AGENTS.md](AGENTS.md) for the same map with workflow commands.
+Root [../README.md](package-guide.md) links here for the narrative quick start. See [AGENTS.md](AGENTS.md) for the same map with workflow commands.
