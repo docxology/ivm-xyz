@@ -162,7 +162,7 @@ All methods and classes are fully documented:
 
 ### Test Coverage
 
-- ✅ **12 test modules** covering all functionality (111 passed / 1 skipped on 2026-08-31; re-run `uv run pytest tests/ -q` for current counts)
+- ✅ **12 test modules** covering all functionality (111 passed / 1 skipped on 2026-08-31; re-run `uv run --extra dev pytest tests/ -q` for current counts)
 - ✅ All methods tested
 - ✅ Edge cases tested
 - ✅ Integration tests
@@ -289,4 +289,4 @@ See: [API.md](API.md#polyhedronplotter-class), [STRUCTURE.md](STRUCTURE.md), [..
 
 **Last Updated**: Documentation comprehensively reviewed and expanded
 **Status**: ✅ All methods, classes, and functions fully documented
-**Test Coverage**: 12 test modules; `uv run pytest tests/ -q` is authoritative for current counts
+**Test Coverage**: 12 test modules; `uv run --extra dev pytest tests/ -q` is authoritative for current counts

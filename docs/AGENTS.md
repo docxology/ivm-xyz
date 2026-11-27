@@ -265,7 +265,7 @@ The package implements:
 
 1. **Quick test run:**
    ```bash
-   uv run python -m unittest discover tests
+   uv run --extra dev python -m unittest discover tests
    ```
 
 2. **Comprehensive test with logging:**
